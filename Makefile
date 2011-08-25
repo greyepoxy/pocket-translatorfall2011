@@ -1,11 +1,11 @@
 JC = javac
-JFLAGS = -g
+JFLAGS = -g -d .
 .SUFFIXES: .java .class
 .java.class:
-	$(JC) $(JFLAGS) src/$*.java
+	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-		Micro.java
+		src/Micro.java
 
 all: group compiler
 
