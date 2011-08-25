@@ -2,7 +2,7 @@ JC = javac
 JFLAGS = -g
 .SUFFIXES: .java .class
 .java.class:
-	$(JC) $(JFLAGS) src\$*.java
+	$(JC) $(JFLAGS) src/$*.java
 
 CLASSES = \
 		Micro.java
@@ -10,8 +10,7 @@ CLASSES = \
 all: group compiler
 
 group:
-	echo "Brian Bowman"
-	echo "Justin Huffaker"
+	printf "Brian Bowman\nJustin Huffaker\n"
 	
 compiler: classes
 
