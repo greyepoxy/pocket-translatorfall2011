@@ -21,7 +21,7 @@ public class Micro {
 			Token t = lexer.nextToken();
 			while (t.getType() != -1)
 			{
-				if((t.getType()) != lexer.WS && (t.getType() != lexer.COMMENT))
+				if((t.getType()) != MicroLexer.WS && (t.getType() != MicroLexer.COMMENT))
 				{
 					String type = "";
 					switch(t.getType())
