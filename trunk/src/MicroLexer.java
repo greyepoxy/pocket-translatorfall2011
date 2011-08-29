@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g 2011-08-27 18:58:34
+// $ANTLR 3.4 C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g 2011-08-29 15:00:35
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -30,17 +30,17 @@ public class MicroLexer extends Lexer {
     public MicroLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g"; }
+    public String getGrammarFileName() { return "C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g"; }
 
     // $ANTLR start "KEYWORD"
     public final void mKEYWORD() throws RecognitionException {
         try {
             int _type = KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:4: ( ( 'PROGRAM' | 'BEGIN' | 'END' | 'PROTO' | 'FUNCTION' | 'READ' | 'WRITE' | 'IF' | 'THEN' | 'ELSE' | 'ENDIF' | 'RETURN' | 'CASE' | 'ENDCASE' | 'BREAK' | 'DEFAULT' | 'DO' | 'WHILE' | 'FLOAT' | 'INT' | 'VOID' | 'STRING' ) )
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:7: ( 'PROGRAM' | 'BEGIN' | 'END' | 'PROTO' | 'FUNCTION' | 'READ' | 'WRITE' | 'IF' | 'THEN' | 'ELSE' | 'ENDIF' | 'RETURN' | 'CASE' | 'ENDCASE' | 'BREAK' | 'DEFAULT' | 'DO' | 'WHILE' | 'FLOAT' | 'INT' | 'VOID' | 'STRING' )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:4: ( ( 'PROGRAM' | 'BEGIN' | 'END' | 'PROTO' | 'FUNCTION' | 'READ' | 'WRITE' | 'IF' | 'THEN' | 'ELSE' | 'ENDIF' | 'RETURN' | 'CASE' | 'ENDCASE' | 'BREAK' | 'DEFAULT' | 'DO' | 'WHILE' | 'FLOAT' | 'INT' | 'VOID' | 'STRING' ) )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:7: ( 'PROGRAM' | 'BEGIN' | 'END' | 'PROTO' | 'FUNCTION' | 'READ' | 'WRITE' | 'IF' | 'THEN' | 'ELSE' | 'ENDIF' | 'RETURN' | 'CASE' | 'ENDCASE' | 'BREAK' | 'DEFAULT' | 'DO' | 'WHILE' | 'FLOAT' | 'INT' | 'VOID' | 'STRING' )
             {
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:7: ( 'PROGRAM' | 'BEGIN' | 'END' | 'PROTO' | 'FUNCTION' | 'READ' | 'WRITE' | 'IF' | 'THEN' | 'ELSE' | 'ENDIF' | 'RETURN' | 'CASE' | 'ENDCASE' | 'BREAK' | 'DEFAULT' | 'DO' | 'WHILE' | 'FLOAT' | 'INT' | 'VOID' | 'STRING' )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:7: ( 'PROGRAM' | 'BEGIN' | 'END' | 'PROTO' | 'FUNCTION' | 'READ' | 'WRITE' | 'IF' | 'THEN' | 'ELSE' | 'ENDIF' | 'RETURN' | 'CASE' | 'ENDCASE' | 'BREAK' | 'DEFAULT' | 'DO' | 'WHILE' | 'FLOAT' | 'INT' | 'VOID' | 'STRING' )
             int alt1=22;
             switch ( input.LA(1) ) {
             case 'P':
@@ -283,7 +283,7 @@ public class MicroLexer extends Lexer {
 
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:8: 'PROGRAM'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:8: 'PROGRAM'
                     {
                     match("PROGRAM"); 
 
@@ -292,7 +292,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:20: 'BEGIN'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:20: 'BEGIN'
                     {
                     match("BEGIN"); 
 
@@ -301,7 +301,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:30: 'END'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:30: 'END'
                     {
                     match("END"); 
 
@@ -310,7 +310,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:38: 'PROTO'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:38: 'PROTO'
                     {
                     match("PROTO"); 
 
@@ -319,7 +319,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:48: 'FUNCTION'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:48: 'FUNCTION'
                     {
                     match("FUNCTION"); 
 
@@ -328,7 +328,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:61: 'READ'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:61: 'READ'
                     {
                     match("READ"); 
 
@@ -337,7 +337,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:4:70: 'WRITE'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:4:70: 'WRITE'
                     {
                     match("WRITE"); 
 
@@ -346,7 +346,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 8 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:5:4: 'IF'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:5:4: 'IF'
                     {
                     match("IF"); 
 
@@ -355,7 +355,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 9 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:5:11: 'THEN'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:5:11: 'THEN'
                     {
                     match("THEN"); 
 
@@ -364,7 +364,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 10 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:5:20: 'ELSE'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:5:20: 'ELSE'
                     {
                     match("ELSE"); 
 
@@ -373,7 +373,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 11 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:5:29: 'ENDIF'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:5:29: 'ENDIF'
                     {
                     match("ENDIF"); 
 
@@ -382,7 +382,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 12 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:5:39: 'RETURN'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:5:39: 'RETURN'
                     {
                     match("RETURN"); 
 
@@ -391,7 +391,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 13 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:5:50: 'CASE'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:5:50: 'CASE'
                     {
                     match("CASE"); 
 
@@ -400,7 +400,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 14 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:5:59: 'ENDCASE'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:5:59: 'ENDCASE'
                     {
                     match("ENDCASE"); 
 
@@ -409,7 +409,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 15 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:5:71: 'BREAK'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:5:71: 'BREAK'
                     {
                     match("BREAK"); 
 
@@ -418,7 +418,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 16 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:6:4: 'DEFAULT'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:6:4: 'DEFAULT'
                     {
                     match("DEFAULT"); 
 
@@ -427,7 +427,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 17 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:6:16: 'DO'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:6:16: 'DO'
                     {
                     match("DO"); 
 
@@ -436,7 +436,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 18 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:6:23: 'WHILE'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:6:23: 'WHILE'
                     {
                     match("WHILE"); 
 
@@ -445,7 +445,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 19 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:6:33: 'FLOAT'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:6:33: 'FLOAT'
                     {
                     match("FLOAT"); 
 
@@ -454,7 +454,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 20 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:6:43: 'INT'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:6:43: 'INT'
                     {
                     match("INT"); 
 
@@ -463,7 +463,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 21 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:6:51: 'VOID'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:6:51: 'VOID'
                     {
                     match("VOID"); 
 
@@ -472,7 +472,7 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 22 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:6:60: 'STRING'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:6:60: 'STRING'
                     {
                     match("STRING"); 
 
@@ -500,8 +500,8 @@ public class MicroLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:9:13: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:9:15: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:9:13: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:9:15: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -513,7 +513,7 @@ public class MicroLexer extends Lexer {
             }
 
 
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:9:39: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:9:39: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop2:
             do {
                 int alt2=2;
@@ -526,7 +526,7 @@ public class MicroLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:
+            	    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
             	        input.consume();
@@ -563,10 +563,10 @@ public class MicroLexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:12:12: ( ( '0' .. '9' )+ )
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:12:14: ( '0' .. '9' )+
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:12:12: ( ( '0' .. '9' )+ )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:12:14: ( '0' .. '9' )+
             {
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:12:14: ( '0' .. '9' )+
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:12:14: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -580,7 +580,7 @@ public class MicroLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:
+            	    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
             	        input.consume();
@@ -621,7 +621,7 @@ public class MicroLexer extends Lexer {
         try {
             int _type = FLOATLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:16:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* | '.' ( '0' .. '9' )+ )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:16:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* | '.' ( '0' .. '9' )+ )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -640,9 +640,9 @@ public class MicroLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:16:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )*
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:16:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )*
                     {
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:16:9: ( '0' .. '9' )+
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:16:9: ( '0' .. '9' )+
                     int cnt4=0;
                     loop4:
                     do {
@@ -656,7 +656,7 @@ public class MicroLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:
+                    	    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -683,7 +683,7 @@ public class MicroLexer extends Lexer {
 
                     match('.'); 
 
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:16:25: ( '0' .. '9' )*
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:16:25: ( '0' .. '9' )*
                     loop5:
                     do {
                         int alt5=2;
@@ -696,7 +696,7 @@ public class MicroLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:
+                    	    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -720,11 +720,11 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:17:9: '.' ( '0' .. '9' )+
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:17:9: '.' ( '0' .. '9' )+
                     {
                     match('.'); 
 
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:17:13: ( '0' .. '9' )+
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:17:13: ( '0' .. '9' )+
                     int cnt6=0;
                     loop6:
                     do {
@@ -738,7 +738,7 @@ public class MicroLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:
+                    	    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -781,14 +781,14 @@ public class MicroLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:21:5: ( '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:21:9: '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:21:5: ( '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:21:9: '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("--"); 
 
 
 
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:21:14: (~ ( '\\n' | '\\r' ) )*
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:21:14: (~ ( '\\n' | '\\r' ) )*
             loop8:
             do {
                 int alt8=2;
@@ -801,7 +801,7 @@ public class MicroLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:
+            	    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -822,7 +822,7 @@ public class MicroLexer extends Lexer {
             } while (true);
 
 
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:21:28: ( '\\r' )?
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:21:28: ( '\\r' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -831,7 +831,7 @@ public class MicroLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:21:28: '\\r'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:21:28: '\\r'
                     {
                     match('\r'); 
 
@@ -861,11 +861,11 @@ public class MicroLexer extends Lexer {
         try {
             int _type = OPERATOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:4: ( ( ':=' | '+' | '-' | '*' | '/' | '=' | '<' | '>' | '(' | ')' | ';' | ',' ) )
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:7: ( ':=' | '+' | '-' | '*' | '/' | '=' | '<' | '>' | '(' | ')' | ';' | ',' )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:4: ( ( ':=' | '+' | '-' | '*' | '/' | '=' | '<' | '>' | '(' | ')' | ';' | ',' | '!=' ) )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:7: ( ':=' | '+' | '-' | '*' | '/' | '=' | '<' | '>' | '(' | ')' | ';' | ',' | '!=' )
             {
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:7: ( ':=' | '+' | '-' | '*' | '/' | '=' | '<' | '>' | '(' | ')' | ';' | ',' )
-            int alt10=12;
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:7: ( ':=' | '+' | '-' | '*' | '/' | '=' | '<' | '>' | '(' | ')' | ';' | ',' | '!=' )
+            int alt10=13;
             switch ( input.LA(1) ) {
             case ':':
                 {
@@ -927,6 +927,11 @@ public class MicroLexer extends Lexer {
                 alt10=12;
                 }
                 break;
+            case '!':
+                {
+                alt10=13;
+                }
+                break;
             default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 10, 0, input);
@@ -937,7 +942,7 @@ public class MicroLexer extends Lexer {
 
             switch (alt10) {
                 case 1 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:8: ':='
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:8: ':='
                     {
                     match(":="); 
 
@@ -946,79 +951,88 @@ public class MicroLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:13: '+'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:13: '+'
                     {
                     match('+'); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:17: '-'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:17: '-'
                     {
                     match('-'); 
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:21: '*'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:21: '*'
                     {
                     match('*'); 
 
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:25: '/'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:25: '/'
                     {
                     match('/'); 
 
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:29: '='
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:29: '='
                     {
                     match('='); 
 
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:33: '<'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:33: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 8 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:37: '>'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:37: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 9 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:41: '('
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:41: '('
                     {
                     match('('); 
 
                     }
                     break;
                 case 10 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:45: ')'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:45: ')'
                     {
                     match(')'); 
 
                     }
                     break;
                 case 11 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:49: ';'
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:49: ';'
                     {
                     match(';'); 
 
                     }
                     break;
                 case 12 :
-                    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:25:53: ','
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:53: ','
                     {
                     match(','); 
+
+                    }
+                    break;
+                case 13 :
+                    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:25:57: '!='
+                    {
+                    match("!="); 
+
+
 
                     }
                     break;
@@ -1042,12 +1056,12 @@ public class MicroLexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:29:5: ( '\"' (~ ( '\"' ) )* '\"' )
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:29:8: '\"' (~ ( '\"' ) )* '\"'
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:29:5: ( '\"' (~ ( '\"' ) )* '\"' )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:29:8: '\"' (~ ( '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:29:12: (~ ( '\"' ) )*
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:29:12: (~ ( '\"' ) )*
             loop11:
             do {
                 int alt11=2;
@@ -1060,7 +1074,7 @@ public class MicroLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:
+            	    // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1099,8 +1113,8 @@ public class MicroLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:32:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:32:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:32:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:32:9: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1126,12 +1140,12 @@ public class MicroLexer extends Lexer {
     // $ANTLR end "WS"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:8: ( KEYWORD | IDENTIFIER | INTLITERAL | FLOATLITERAL | COMMENT | OPERATOR | STRINGLITERAL | WS )
+        // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:8: ( KEYWORD | IDENTIFIER | INTLITERAL | FLOATLITERAL | COMMENT | OPERATOR | STRINGLITERAL | WS )
         int alt12=8;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
-                // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:10: KEYWORD
+                // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:10: KEYWORD
                 {
                 mKEYWORD(); 
 
@@ -1139,7 +1153,7 @@ public class MicroLexer extends Lexer {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:18: IDENTIFIER
+                // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:18: IDENTIFIER
                 {
                 mIDENTIFIER(); 
 
@@ -1147,7 +1161,7 @@ public class MicroLexer extends Lexer {
                 }
                 break;
             case 3 :
-                // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:29: INTLITERAL
+                // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:29: INTLITERAL
                 {
                 mINTLITERAL(); 
 
@@ -1155,7 +1169,7 @@ public class MicroLexer extends Lexer {
                 }
                 break;
             case 4 :
-                // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:40: FLOATLITERAL
+                // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:40: FLOATLITERAL
                 {
                 mFLOATLITERAL(); 
 
@@ -1163,7 +1177,7 @@ public class MicroLexer extends Lexer {
                 }
                 break;
             case 5 :
-                // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:53: COMMENT
+                // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:53: COMMENT
                 {
                 mCOMMENT(); 
 
@@ -1171,7 +1185,7 @@ public class MicroLexer extends Lexer {
                 }
                 break;
             case 6 :
-                // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:61: OPERATOR
+                // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:61: OPERATOR
                 {
                 mOPERATOR(); 
 
@@ -1179,7 +1193,7 @@ public class MicroLexer extends Lexer {
                 }
                 break;
             case 7 :
-                // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:70: STRINGLITERAL
+                // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:70: STRINGLITERAL
                 {
                 mSTRINGLITERAL(); 
 
@@ -1187,7 +1201,7 @@ public class MicroLexer extends Lexer {
                 }
                 break;
             case 8 :
-                // C:\\Users\\Brian Bowman\\Documents\\Compiler\\antlrtemplate\\MicroParser.g:1:84: WS
+                // C:\\Users\\Brian Bowman\\workspace\\eclipse\\trunk\\PocketTranslator\\src\\MicroParser.g:1:84: WS
                 {
                 mWS(); 
 
@@ -1232,9 +1246,9 @@ public class MicroLexer extends Lexer {
     static final String DFA12_specialS =
         "\144\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\2\23\2\uffff\1\23\22\uffff\1\23\1\uffff\1\22\5\uffff\5\21\1"+
-            "\20\1\17\1\21\12\16\5\21\2\uffff\1\15\1\2\1\11\1\12\1\3\1\4"+
-            "\2\15\1\7\6\15\1\1\1\15\1\5\1\14\1\10\1\15\1\13\1\6\3\15\4\uffff"+
+            "\2\23\2\uffff\1\23\22\uffff\1\23\1\21\1\22\5\uffff\5\21\1\20"+
+            "\1\17\1\21\12\16\5\21\2\uffff\1\15\1\2\1\11\1\12\1\3\1\4\2\15"+
+            "\1\7\6\15\1\1\1\15\1\5\1\14\1\10\1\15\1\13\1\6\3\15\4\uffff"+
             "\1\15\1\uffff\32\15",
             "\1\24",
             "\1\25\14\uffff\1\26",

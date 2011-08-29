@@ -50,7 +50,7 @@ public class Micro {
 							
 					}
 					
-					System.out.println("Type: " + type);
+					System.out.println("Token Type: " + type);
 					System.out.println("Value: " + t.getText());					
 				}
 				
