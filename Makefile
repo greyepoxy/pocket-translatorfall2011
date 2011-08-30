@@ -1,6 +1,6 @@
 JC = javac
 SOURCEPATH = ./src
-CLASSPATH = ref/antlrworks-1.4.3.jar
+CLASSPATH = .:./ref/antlrworks-1.4.3.jar
 JFLAGS = -g -classpath $(CLASSPATH) -sourcepath $(SOURCEPATH) -d .
 .SUFFIXES: .java .class
 .java.class:
@@ -14,7 +14,8 @@ CLASSES = \
 all: group compiler
 
 group:
-	printf "Brian Bowman\nJustin Huffaker\n"
+	@echo Brian Bowman
+	@echo Justin Huffaker
 	
 compiler: classes
 
