@@ -30,7 +30,7 @@ public class Micro {
 						type = "FLOATLITERAL";
 						break;
 					case MicroLexer.IDENTIFIER:
-						type = "IDENTIFER";
+						type = "IDENTIFIER";
 						break;
 					case MicroLexer.INTLITERAL:
 						type = "INTLITERAL";
