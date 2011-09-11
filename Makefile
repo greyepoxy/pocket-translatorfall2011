@@ -7,7 +7,8 @@ JFLAGS = -g -classpath $(CLASSPATH) -sourcepath $(SOURCEPATH) -d .
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-		src/MicroLexer.java \
+		src/MicroParserLexer.java \
+		src/MicroParserParser.java \
 		src/Micro.java
 
 
