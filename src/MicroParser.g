@@ -43,13 +43,10 @@ id_list : id (',' id)*
 //   ;
 
 // Function Parameter List
-param_decl_list : param_decl param_decl_tail
+param_decl_list : param_decl (',' param_decl)*
     ;
 
 param_decl : Var_type id
-    ;
-
-param_decl_tail : ',' param_decl param_decl_tail | WS
     ;
 
 // Function Declarations
@@ -98,10 +95,7 @@ postfix_expr : primary | call_expr
 call_expr : id '('expr_list? ')'
     ;
 
-expr_list : expr expr_list_tail
-    ;
-
-expr_list_tail : ',' expr expr_list_tail | WS
+expr_list : expr (',' expr)*
     ;
 
 primary : '('expr')' | id | INTLITERAL | FLOATLITERAL
