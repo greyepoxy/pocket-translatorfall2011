@@ -7,18 +7,14 @@ program : 'PROGRAM' id 'BEGIN' pgm_body 'END'
 id : IDENTIFIER
     ;
 
-pgm_body : decl func_declarations
+pgm_body : decl_list func_declarations
     ;
 
 decl_list 
-	:	decl+
+	:	decl*
 	;
 
-decl : string_decl_list  | var_decl_list // | WS//string_decl_list decl? | var_decl_list decl? | WS
-    ;
-
-// Global String Declaration
-string_decl_list : string_decl+ //string_decl_tail?
+decl : string_decl  | var_decl // | WS//string_decl_list decl? | var_decl_list decl? | WS
     ;
 
 string_decl : 'STRING' id ':=' str ';' //| WS
@@ -30,10 +26,6 @@ str : STRINGLITERAL
 //string_decl_tail : string_decl string_decl_tail?
 //    ;
 
-// Variable Declaration
-var_decl_list : var_decl+ //var_decl_tail?
-    ;
-
 var_decl : Var_type id_list ';' //| WS
     ;
 
@@ -43,11 +35,9 @@ Var_type : 'FLOAT' | 'INT'
 any_type : Var_type | 'VOID'
     ;
 
-id_list : id id_tail
+id_list : id (',' id)*
     ;
 
-id_tail : ',' id id_tail | WS
-    ;
 
 //var_decl_tail : var_decl var_decl_tail?
 //   ;
@@ -63,23 +53,17 @@ param_decl_tail : ',' param_decl param_decl_tail | WS
     ;
 
 // Function Declarations
-func_declarations : func_decl func_decl_tail?
+func_declarations : (func_decl)*
     ;
 
-func_decl : 'FUNCTION' any_type id '('param_decl_list?')' 'BEGIN' func_body 'END' | WS
+func_decl : 'FUNCTION' any_type id '('param_decl_list?')' 'BEGIN' func_body 'END'
     ;
-
-func_decl_tail : func_decl func_decl_tail?
-    ;
-
-func_body : decl stmt_list
+    
+func_body : decl_list stmt_list
     ;
 
 // Statement List
-stmt_list : stmt stmt_tail | WS
-    ;
-
-stmt_tail : stmt stmt_tail | WS
+stmt_list : (stmt)*
     ;
 
 stmt : assign_stmt | read_stmt | write_stmt | return_stmt | if_stmt | do_stmt
@@ -102,16 +86,10 @@ return_stmt : 'RETURN' expr ';'
     ;
 
 // Expressions
-expr : factor expr_tail 
+expr : factor  (Addop factor)* 
     ;
 
-expr_tail : Addop factor expr_tail | WS
-    ;
-
-factor : postfix_expr factor_tail
-    ;
-
-factor_tail : Mulop postfix_expr factor_tail | WS
+factor : postfix_expr (Mulop postfix_expr)*
     ;
 
 postfix_expr : primary | call_expr
@@ -188,3 +166,8 @@ WS  :   ( ' '
         | '\n'
         ) {$channel=HIDDEN;}
     ;
+
+Program_start
+	:
+	;
+
