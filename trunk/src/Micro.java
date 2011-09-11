@@ -17,46 +17,18 @@ public class Micro {
 		try
 		{
 			CharStream inputstream = new ANTLRFileStream(args[0].trim());			
-			MicroLexer lexer = new MicroLexer(inputstream);
-			Token t = lexer.nextToken();
-			while (t.getType() != -1)
-			{
-				if((t.getType()) != MicroLexer.WS && (t.getType() != MicroLexer.COMMENT))
-				{
-					String type = "";
-					switch(t.getType())
-					{
-					case MicroLexer.FLOATLITERAL:
-						type = "FLOATLITERAL";
-						break;
-					case MicroLexer.IDENTIFIER:
-						type = "IDENTIFIER";
-						break;
-					case MicroLexer.INTLITERAL:
-						type = "INTLITERAL";
-						break;
-					case MicroLexer.KEYWORD:
-						type = "KEYWORD";
-						break;
-					case MicroLexer.OPERATOR:
-						type = "OPERATOR";
-						break;
-					case MicroLexer.STRINGLITERAL:
-						type = "STRINGLITERAL";
-						break;
-					default:
-						System.out.println("Invalid Token type");
-						System.exit(1);
-							
-					}
-					
-					System.out.println("Token Type: " + type);
-					System.out.println("Value: " + t.getText());					
-				}
-				
-				t = lexer.nextToken();
-			}
-			
+			MicroParserLexer lexer = new MicroParserLexer(inputstream);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            MicroParserParser parser = new MicroParserParser(tokens);
+            
+            try
+            {
+                parser.expr();
+                System.out.println("Accepted");
+            }
+            catch(RecognitionException e) {
+                System.out.println("Not accepted");
+            }
 		}
 		catch(IOException e)
 		{
