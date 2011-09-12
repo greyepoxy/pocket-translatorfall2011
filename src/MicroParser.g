@@ -1,6 +1,28 @@
 grammar MicroParser;
 
-@rulecatch { }
+// Disable automatic error recovery
+@members {
+protected void mismatch(IntStream input, int ttype, BitSet follow)
+throws RecognitionException
+{
+throw new MismatchedTokenException(ttype, input);
+}
+public Object recoverFromMismatchedSet(IntStream input,
+RecognitionException e,
+BitSet follow)
+throws RecognitionException
+{
+throw e;
+}
+}
+// Alter code generation so catch-clauses get replace with
+// this action.
+@rulecatch {
+catch (RecognitionException e) {
+throw e;
+}
+}
+
 // Program
 program :	 'PROGRAM' id 'BEGIN' pgm_body 'END' EOF
 	;
