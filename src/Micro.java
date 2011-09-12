@@ -5,6 +5,7 @@ import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RuleReturnScope;
 import org.antlr.runtime.Token;
 
 public class Micro {
@@ -24,7 +25,7 @@ public class Micro {
             
             try
             {
-                parser.expr();
+            	parser.program(); //look for overall program structure.
                 System.out.println("Accepted");
             }
             catch(RecognitionException e) {
