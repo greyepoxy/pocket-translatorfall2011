@@ -1,5 +1,6 @@
 grammar MicroParser;
 
+@rulecatch { }
 // Program
 program :	 'PROGRAM' id 'BEGIN' pgm_body 'END' EOF
 	;
