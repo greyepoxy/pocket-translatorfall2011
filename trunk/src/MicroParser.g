@@ -2,25 +2,19 @@ grammar MicroParser;
 
 // Disable automatic error recovery
 @members {
-protected void mismatch(IntStream input, int ttype, BitSet follow)
-throws RecognitionException
-{
-throw new MismatchedTokenException(ttype, input);
-}
-public Object recoverFromMismatchedSet(IntStream input,
-RecognitionException e,
-BitSet follow)
-throws RecognitionException
-{
-throw e;
-}
+	public void displayRecognitionError(String[] tokenNames, 
+					RecognitionException e) {
+		String hdr = getErrorHeader(e);
+		String msg = getErrorMessage(e, tokenNames);
+		// Now do something with hdr and msg...
+	}
 }
 // Alter code generation so catch-clauses get replace with
 // this action.
 @rulecatch {
-catch (RecognitionException e) {
-throw e;
-}
+	catch (RecognitionException e) {
+		throw e;
+	}
 }
 
 // Program
