@@ -21,7 +21,7 @@ grammar MicroParser;
 program :	 'PROGRAM' id 'BEGIN' pgm_body 'END' EOF
 	;
 
-id : IDENTIFIER
+id : IDENTIFIER {$IDENTIFIER.text.length() <= 31}?
 	;
 
 pgm_body : decl_list func_declarations
@@ -37,7 +37,7 @@ decl : string_decl  | var_decl // | WS//string_decl_list decl? | var_decl_list d
 string_decl : 'STRING' id ':=' str ';' //| WS
 	;
 
-str : STRINGLITERAL
+str : STRINGLITERAL {$STRINGLITERAL.text.length() <= 81}?
 	;
 
 //string_decl_tail : string_decl string_decl_tail?
