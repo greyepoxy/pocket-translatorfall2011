@@ -25,8 +25,7 @@ public class Micro {
             
             try
             {
-            	parser.program(); //look for overall program structure.
-                System.out.println("Accepted");
+            	parser.program(); //look for overall program structure.                
             }
             catch(RecognitionException e) {
                 System.out.println("Not accepted");
