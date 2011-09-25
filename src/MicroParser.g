@@ -1,13 +1,74 @@
 grammar MicroParser;
 
+@header{
+	import java.util.HashMap;
+}
+
 // Disable automatic error recovery
 @members {
+	int symbolTableId = 0;
+	
+	class TableEntry {
+		public String Type;
+		public String Value;
+		public String Name;
+		
+		public TableEntry(String n, String t, String v)
+		{
+			Name = n;
+			Type = t;
+			Value = v;
+		}
+		
+		public String toString()
+		{
+			if(Type.equals("STRING"))
+			{
+				return "name: " + Name + " type " + Type + " value: " + Value;
+			}
+			else
+			{
+				return "name: " + Name + " type " + Type;			
+			}
+
+		}
+	}
+	
+	public HashMap<Integer, ArrayList<TableEntry>> tableOfTables = new HashMap<Integer, ArrayList<TableEntry>>();
+	public HashMap<Integer, String> tableOfTableNames = new HashMap<Integer, String>();
+	
+	ArrayList<String> idList = new ArrayList<String>();
+	ArrayList<TableEntry> currentTable = new ArrayList<TableEntry>();
+	
+	Integer currentId = new Integer(symbolTableId);
+	
 	public void displayRecognitionError(String[] tokenNames, 
 					RecognitionException e) {
 		String hdr = getErrorHeader(e);
 		String msg = getErrorMessage(e, tokenNames);
 		// Now do something with hdr and msg...
 	}
+	public void printTables()
+	{
+		for(Integer i : tableOfTables.keySet())
+		{
+			if(i.intValue() == 0)
+			{
+				System.out.println("Printing Global Symbol Table");		
+			}
+			else
+			{
+				System.out.println("Printing Symbol Table for " + tableOfTableNames.get(i));
+			}
+			
+			for(TableEntry t: tableOfTables.get(i))
+			{
+				System.out.println(t);
+			}
+			System.out.println("");
+		}
+	}
+	
 }
 // Alter code generation so catch-clauses get replace with
 // this action.
@@ -18,7 +79,10 @@ grammar MicroParser;
 }
 
 // Program
-program :	 'PROGRAM' id 'BEGIN' pgm_body 'END' EOF
+program :	 'PROGRAM' id 'BEGIN'
+	{ 	tableOfTables.put(new Integer(symbolTableId), currentTable);
+		tableOfTableNames.put(new Integer(symbolTableId), "Global");}
+	 pgm_body 'END' {printTables();} EOF
 	;
 
 id : IDENTIFIER {$IDENTIFIER.text.length() <= 31}?
@@ -34,7 +98,7 @@ decl_list
 decl : string_decl  | var_decl // | WS//string_decl_list decl? | var_decl_list decl? | WS
 	;
 
-string_decl : 'STRING' id ':=' str ';' //| WS
+string_decl : 'STRING' id ':=' str ';' {currentTable.add( new TableEntry($id.text,"STRING", $str.text));} //| WS
 	;
 
 str : STRINGLITERAL {$STRINGLITERAL.text.length() <= 81}?
@@ -43,18 +107,25 @@ str : STRINGLITERAL {$STRINGLITERAL.text.length() <= 81}?
 //string_decl_tail : string_decl string_decl_tail?
 //    ;
 
-var_decl : Var_type id_list ';' //| WS
+var_decl : Var_type id_list 
+{	
+	for(String s : idList){
+		currentTable.add(new TableEntry(s,$Var_type.text, ""));
+	}
+} ';' //| WS
 	;
-
-Var_type : 'FLOAT' | 'INT'
+	
+protected
+Var_type : 'FLOAT' | 'INT' 
 	;
 
 any_type : Var_type | 'VOID'
     ;
 
-id_list : id (',' id)*
+id_list : {idList.clear();} id {idList.add($id.text);} id_tail*
     ;
-
+id_tail :	',' id {idList.add($id.text);}
+    ;
 
 //var_decl_tail : var_decl var_decl_tail?
 //   ;
@@ -70,7 +141,17 @@ param_decl : Var_type id
 func_declarations : (func_decl)*
 	;
 
-func_decl : 'FUNCTION' any_type id '('param_decl_list?')' 'BEGIN' func_body 'END'
+func_decl : 'FUNCTION' any_type id '('param_decl_list?')' 'BEGIN' 
+
+{symbolTableId++;
+ currentTable = new ArrayList<TableEntry>();
+ tableOfTables.put(new Integer(symbolTableId), currentTable);
+ tableOfTableNames.put(new Integer(symbolTableId), $id.text); }  
+ 
+func_body 'END' 
+
+{currentTable = tableOfTables.get(new Integer(0));}
+
 	;
     
 func_body : decl_list stmt_list
