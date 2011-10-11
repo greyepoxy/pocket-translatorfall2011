@@ -1,5 +1,13 @@
 grammar MicroParser;
 
+options{
+ output=AST;
+}
+tokens{
+	LABEL;
+        FUNCTION_BODY;
+}
+
 @header{
 	import java.util.HashMap;
 }
@@ -8,7 +16,7 @@ grammar MicroParser;
 @members {
 	int symbolTableId = 0;
 	
-	class TableEntry {
+	public class TableEntry {
 		public String Type;
 		public String Value;
 		public String Name;
@@ -82,8 +90,8 @@ grammar MicroParser;
 program :	 'PROGRAM' id 'BEGIN'
 	{ 	tableOfTables.put(new Integer(symbolTableId), currentTable);
 		tableOfTableNames.put(new Integer(symbolTableId), "Global");}
-	 pgm_body 'END' {printTables();} EOF
-	;
+	 pgm_body 'END' EOF
+	-> ^('PROGRAM' pgm_body);
 
 id : IDENTIFIER {$IDENTIFIER.text.length() <= 31}?
 	;
@@ -99,7 +107,7 @@ decl : string_decl  | var_decl // | WS//string_decl_list decl? | var_decl_list d
 	;
 
 string_decl : 'STRING' id ':=' str ';' {currentTable.add( new TableEntry($id.text,"STRING", $str.text));} //| WS
-	;
+	->;
 
 str : STRINGLITERAL {$STRINGLITERAL.text.length() <= 81}?
 	;
@@ -112,8 +120,8 @@ var_decl : Var_type id_list
 	for(String s : idList){
 		currentTable.add(new TableEntry(s,$Var_type.text, ""));
 	}
-} ';' //| WS
-	;
+} ';' //| WS 
+	-> ;
 	
 protected
 Var_type : 'FLOAT' | 'INT' 
@@ -150,7 +158,7 @@ func_decl : 'FUNCTION' any_type id '('param_decl_list?')' 'BEGIN'
  
 func_body 'END' 
 
-{currentTable = tableOfTables.get(new Integer(0));}
+{currentTable = tableOfTables.get(new Integer(0));} -> ^('FUNCTION' id ^(FUNCTION_BODY func_body))
 
 	;
     
@@ -165,38 +173,38 @@ stmt : assign_stmt | read_stmt | write_stmt | return_stmt | if_stmt | do_stmt
 	;
 
 // Basic Statements
-assign_stmt : assign_expr ';'
+assign_stmt : assign_expr ';'!
 	;
 
-assign_expr : id ':=' expr
+assign_expr : id ':=' expr -> ^(':=' id expr)
 	;
 
-read_stmt : 'READ' '(' id_list ')'';'
+read_stmt : 'READ' '(' id_list ')'';' -> ^('READ' id_list)
 	;
 
-write_stmt : 'WRITE' '(' id_list ')'';'
+write_stmt : 'WRITE' '(' id_list ')'';'-> ^('WRITE' id_list)
 	;
 
 return_stmt : 'RETURN' expr ';'
 	;
 
 // Expressions
-expr : factor  (Addop factor)* 
+expr : factor  (Addop ^factor)* 
 	;
 
-factor : postfix_expr (Mulop postfix_expr)*
+factor : postfix_expr (Mulop ^postfix_expr)*
 	;
 
 postfix_expr : primary | call_expr
 	;
 
-call_expr : id '('(expr_list)? ')'
+call_expr : id '('!(expr_list)? ')'!
 	;
 
 expr_list : expr (',' expr)*
 	;
 
-primary : '('expr')' | id | INTLITERAL | FLOATLITERAL
+primary : '('!expr')'! | id | INTLITERAL | FLOATLITERAL
 	;
 
 Addop : '+' | '-'
