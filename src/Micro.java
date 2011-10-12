@@ -93,14 +93,9 @@ public class Micro {
             	genIR(IR,(Tree)ret.tree, parser.tableOfTables);
             	for(int i=0; i< IR.size(); i++)
             	{
-            		System.out.println(IR.get(i).opCode + " " + IR.get(i).op1 + " " + IR.get(i).op2 +  " " + IR.get(i).result); 
+            		System.out.println("; " + IR.get(i).opCode + " " + IR.get(i).op1 + " " + IR.get(i).op2 +  " " + IR.get(i).result); 
             	}
-            	System.out.println("");
-            	System.out.println("");
-            	System.out.println("<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>");
-            	System.out.println("");
-            	System.out.println("");
-            	
+				
             	LinkedList<TinyNode> tiny = irToTiny(IR, parser);  
             	printTiny(tiny);
 
