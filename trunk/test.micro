@@ -13,9 +13,7 @@ BEGIN
 		b := b*b + a;
 		a := (b*a)/a;
 
-		WRITE (c);
-		WRITE (b);
-		WRITE (a);
+		WRITE (c,b,a);
 	
 	END
 END

@@ -132,7 +132,7 @@ any_type : Var_type | 'VOID'
 
 id_list : {idList.clear();} id {idList.add($id.text);} id_tail*
     ;
-id_tail :	',' id {idList.add($id.text);}
+id_tail :	',' id {idList.add($id.text);} -> ^(id)
     ;
 
 //var_decl_tail : var_decl var_decl_tail?
