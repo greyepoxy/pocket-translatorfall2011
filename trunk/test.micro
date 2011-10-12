@@ -1,31 +1,21 @@
-PROGRAM sqrt
+PROGRAM p
 BEGIN
 
-	STRING dummy := "abcde";  --This is dummy to satisfy the grammar
-
-	FLOAT n;
-	FLOAT x1,x2;
-	FLOAT fx, dfx;
-	FLOAT error;
-	INT i;
-
+	INT a,b,c;
+	
 	FUNCTION VOID main()
 	BEGIN
-		error := 0.001;
-		READ (x1);
-		fx := x1*x1 - n;
-		dfx := 2.0*x1;
-		x2 := x1 - fx/dfx;
+		a := 20;
+		b := 30;
+		c := 40;
 
-		DO
+		c := c + a*b + (a*b+c)/a + 20;
+		b := b*b + a;
+		a := (b*a)/a;
 
-			x1 := x2;
-			fx := x1*x1 - n;
-			dfx := 2.0*x1;
-			x2 := x1 - fx/dfx;
-
-		WHILE (x1-x2 > error);
-
-		WRITE (x2);
+		WRITE (c);
+		WRITE (b);
+		WRITE (a);
+	
 	END
 END
