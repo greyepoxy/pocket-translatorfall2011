@@ -154,7 +154,7 @@ public class Micro {
 	{
 		String newArg;
 		if (arg.startsWith("$T"))
-			newArg = String.format("r%c", arg.charAt(2));
+			newArg = String.format("r%s", arg.substring(2));
 		else
 			newArg = arg;
 		return newArg;
