@@ -126,11 +126,11 @@ public class Micro {
 		// global variable declarations
 		//  global variables get memory locations
 		for (int i = 0; i < currentTable.size(); i++)
-			tiny.add(new TinyNode(TinyOp.var, currentTable.get(i).Name, null));
+			tiny.add(new TinyNode(TinyOp.var, currentTable.get(i).Name, ""));
 		
-		tiny.add(new TinyNode(TinyOp.push, null, null));
-		tiny.add(new TinyNode(TinyOp.jsr, "main", null));
-		tiny.add(new TinyNode(TinyOp.sys_halt, null, null));
+		tiny.add(new TinyNode(TinyOp.push, "", ""));
+		tiny.add(new TinyNode(TinyOp.jsr, "main", ""));
+		tiny.add(new TinyNode(TinyOp.sys_halt, "", ""));
 		
 		// call to main
 		//  only assignment statements of global variables
@@ -143,8 +143,8 @@ public class Micro {
 			tiny.addAll(tinyOps);
 		}
 		//temporary return for the end of main until functions are implemented
-		tiny.add(new TinyNode(TinyOp.ret, null,null));
-		tiny.add(new TinyNode(TinyOp.end, null, null));
+		tiny.add(new TinyNode(TinyOp.ret, "",""));
+		tiny.add(new TinyNode(TinyOp.end, "", ""));
 		return tiny;
 	}
 	
@@ -235,19 +235,19 @@ public class Micro {
 			}*/
 			// for now only have to worry about main, and no variables to put on stack
 			//  so no link/unlink expressions.
-			tinyOps.add(new TinyNode(TinyOp.label, irNode.op1, null));
+			tinyOps.add(new TinyNode(TinyOp.label, irNode.op1, ""));
 			break;
 		case READI:
-			tinyOps.add(new TinyNode(TinyOp.sys_readi, processArg(irNode.result), null));
+			tinyOps.add(new TinyNode(TinyOp.sys_readi, processArg(irNode.result), ""));
 			break;
 		case READF:
-			tinyOps.add(new TinyNode(TinyOp.sys_readr, processArg(irNode.result), null));
+			tinyOps.add(new TinyNode(TinyOp.sys_readr, processArg(irNode.result), ""));
 			break;
 		case WRITEI:
-			tinyOps.add(new TinyNode(TinyOp.sys_writei, processArg(irNode.result), null));
+			tinyOps.add(new TinyNode(TinyOp.sys_writei, processArg(irNode.result), ""));
 			break;
 		case WRITEF:
-			tinyOps.add(new TinyNode(TinyOp.sys_writer, processArg(irNode.result), null));
+			tinyOps.add(new TinyNode(TinyOp.sys_writer, processArg(irNode.result), ""));
 			break;
 		default:
 			break;
