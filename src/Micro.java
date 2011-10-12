@@ -42,18 +42,18 @@ public class Micro {
 			switch (this.op)
 			{
 			case sys_writei:
-				return String.format("sys writei 1$", this.arg1);
+				return String.format("sys writei %s", this.arg1);
 			case sys_writer:
-				return String.format("sys writer 1$", this.arg1);
+				return String.format("sys writer %s", this.arg1);
 			case sys_readi:
-				return String.format("sys readi 1$", this.arg1);
+				return String.format("sys readi %s", this.arg1);
 			case sys_readr:
-				return String.format("sys readr 1$", this.arg1);
+				return String.format("sys readr %s", this.arg1);
 			default:
 				if (arg2 == null)
-					return String.format("1$ 2$", this.op, this.arg1);
+					return String.format("%s %s", this.op, this.arg1);
 				else
-					return String.format("1$ 2$ 3$", this.op, this.arg1, this.arg2);
+					return String.format("%s %s %s", this.op, this.arg1, this.arg2);
 			}
 		}
 	}
@@ -100,10 +100,7 @@ public class Micro {
             	System.out.println("");
             	
             	LinkedList<TinyNode> tiny = irToTiny(IR, parser);  
-            	for(int i=0; i< tiny.size(); i++)
-            	{
-            		System.out.println(tiny.get(i).op + " " + tiny.get(i).arg1 + " " + tiny.get(i).arg2);
-            	}
+            	printTiny(tiny);
 
             }
             catch(RecognitionException e) {
@@ -160,7 +157,7 @@ public class Micro {
 	{
 		String newArg;
 		if (arg.startsWith("$T"))
-			newArg = String.format("r1$", arg.charAt(2));
+			newArg = String.format("r%c", arg.charAt(2));
 		else
 			newArg = arg;
 		return newArg;
