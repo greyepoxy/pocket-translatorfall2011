@@ -355,9 +355,9 @@ public class Micro {
 		IRNode n = new IRNode();
 		boolean isFloat = isFloatSymbol(AST.getChild(0).getText(), symbolTable);
 		n.opCode = (isFloat) ? (IROp.STOREF):(IROp.STOREI);
-		n.op2 = AST.getChild(0).getText(); //where to store
+		n.result = AST.getChild(0).getText(); //where to store
 		n.op1 = genExpression(IR, AST.getChild(1), isFloat);
-		n.result = "";
+		n.op2 = "";
 		IR.add(n);
 	}
 	
