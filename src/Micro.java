@@ -49,6 +49,8 @@ public class Micro {
 				return String.format("sys readi %s", this.arg1);
 			case sys_readr:
 				return String.format("sys readr %s", this.arg1);
+			case sys_halt:
+				return String.format("sys halt");
 			default:
 				if (arg2 == null)
 					return String.format("%s %s", this.op, this.arg1);
