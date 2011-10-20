@@ -12,8 +12,8 @@ JFLAGS := -g -classpath $(LIB_ANTLR) -sourcepath $(GENERATEDPATH)/src/:$(SOURCEP
 CLASSES = \
 		$(GENERATEDPATH)/src/MicroParserLexer.java \
 		$(GENERATEDPATH)/src/MicroParserParser.java \
-		$(SOURCEPATH)/IROp.java \
-		$(SOURCEPATH)/TinyOp.java \
+		$(SOURCEPATH)/IRNode.java \
+		$(SOURCEPATH)/TinyNode.java \
 		$(SOURCEPATH)/Micro.java
 
 
