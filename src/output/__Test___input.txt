@@ -1,21 +1,24 @@
-PROGRAM p
+PROGRAM test
 BEGIN
-
-	INT a,b,c;
-	
-	FUNCTION VOID main()
+	INT a,b,c,x,y,z,h,j,k;
+  FUNCTION INT main()
 	BEGIN
-		a := 20;
-		b := 30;
-		c := 40;
-
-		c := c + a*b + (a*b+c)/a + 20;
-		b := b*b + a;
-		a := (b*a)/a;
-
-		WRITE (c);
-		WRITE (b);
-		WRITE (a);
+  	STRING a :="";
+	INT xyz; 
+	IF (a = b)
+	THEN
+		
+		h:=0;
+ELSE
 	
+  	j:=1;
+  	DO
+  		a := j;
+  		j := j + 1;		
+  	WHILE (j < 11);
+
+	
+	ENDIF
+	RETURN a+b;
 	END
 END

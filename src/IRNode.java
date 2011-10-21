@@ -29,7 +29,8 @@ public class IRNode {
 		READI,
 		READF,
 		WRITEI,
-		WRITEF
+		WRITEF,
+		JSR
 	}
 	
 	public IROp opCode;

@@ -6,6 +6,11 @@ options{
 tokens{
 	LABEL;
         FUNCTION_BODY;
+        IF_COND;
+        IF_MAIN;
+        IF_ELSE;
+        DO_MAIN;
+        DO_COND;
 }
 
 @header{
@@ -186,7 +191,7 @@ write_stmt : 'WRITE' '(' id_list ')'';'-> ^('WRITE' id_list)
 	;
 
 return_stmt : 'RETURN' expr ';'
-	;
+	-> ^('RETURN' expr);
 
 // Expressions
 expr : factor  (Addop ^factor)* 
@@ -215,19 +220,18 @@ Mulop : '*' | '/'
 
 // Complex Statements and Condition
 if_stmt : 'IF' '(' cond ')' 'THEN' stmt_list (else_part)?  'ENDIF'
-	;
+	-> ^('IF' ^(IF_COND cond) ^(IF_MAIN stmt_list) ^(IF_ELSE else_part)?);
 
 else_part : 'ELSE' stmt_list
-	;
+	-> stmt_list;
 
-cond : expr Compop expr
-	;
+cond : expr Compop^ expr;
 
 Compop : '<' | '>' | '=' | '!='
 	;
 
 do_stmt : 'DO' stmt_list 'WHILE' '(' cond ')'';'
-	;
+	-> ^('DO' ^(DO_MAIN stmt_list) ^(DO_COND cond) );
 
 // Lexer tokens
 
