@@ -118,6 +118,8 @@ public class TinyNode {
 		String newArg;
 		if (arg.startsWith("$T"))
 			newArg = String.format("r%s", arg.substring(2));
+		else if (arg.startsWith("$L"))
+			newArg = String.format("l%s", arg.substring(2));
 		else
 			newArg = arg;
 		return newArg;
