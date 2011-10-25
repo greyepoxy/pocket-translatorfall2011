@@ -11,9 +11,11 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.Tree;
 
-
 public class Micro {
 
+	//TODO: CHANGE BEFORE SUBMISSION!!!!!!!!!!!!!!!!!!!!!!!
+	private static final boolean DEBUG_PRINT_STATEMENTS = true;
+	
 	
 	/**
 	 * @param args
@@ -58,12 +60,20 @@ public class Micro {
             	//System.out.println( ((Tree)ret.tree).toStringTree()  );
             	LinkedList<IRNode> IR = new LinkedList<IRNode>();
 
+            	if(DEBUG_PRINT_STATEMENTS)
+            	{
+            		MicroParserParser.TableEntry te = parser.new TableEntry("$DEBUG","STRING","\n");
+            		parser.tableOfTables.get(new Integer(0)).add(te);
+            	}
+            	
             	genIR(IR,(Tree)ret.tree, parser.tableOfTables);
             	for(int i=0; i< IR.size(); i++)
             	{
             		System.out.println("; " + IR.get(i).opCode + " " + IR.get(i).op1 + " " + IR.get(i).op2 +  " " + IR.get(i).result); 
             	}
 				
+            	
+            	
             	LinkedList<TinyNode> tiny = TinyNode.irToTiny(IR, parser);  
             	TinyNode.printTiny(tiny);
 
@@ -289,11 +299,24 @@ public class Micro {
 		{
 			IRNode n = new IRNode();
 			boolean isFloat = isFloatSymbol(AST.getChild(i).getText(), symbolTable);
+			boolean isString = isStringSymbol(AST.getChild(i).getText(), symbolTable);
 			n.opCode = (isFloat) ? (IRNode.IROp.WRITEF):(IRNode.IROp.WRITEI);
+			n.opCode = (isString) ? (IRNode.IROp.WRITES):(n.opCode);
 			n.op1 = "";
 			n.op2 = "";
 			n.result = AST.getChild(i).getText();
 			IR.add(n);
+			
+			if(DEBUG_PRINT_STATEMENTS)
+			{
+				n = new IRNode();
+				n.opCode = IRNode.IROp.WRITES;
+				n.op1 = "";
+				n.op2 = "";
+				n.result = "$DEBUG";	
+				IR.add(n);
+			}
+			
 		}
 		
 
@@ -451,6 +474,30 @@ public class Micro {
 			{
 				if(te.Name.equals(name)){
 					if(te.Type.equals("FLOAT"))
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+		}
+		System.out.println("Can't find your symbol.");
+		return false;
+	}
+	
+	public static boolean isStringSymbol(String name,HashMap<Integer, ArrayList<MicroParserParser.TableEntry>> symbolTable)
+	{
+		//start with local scope
+		for(int i= 1; i>=0; i--)
+		{
+			Integer objI = new Integer(i);
+			for(MicroParserParser.TableEntry te : symbolTable.get(objI))
+			{
+				if(te.Name.equals(name)){
+					if(te.Type.equals("STRING"))
 					{
 						return true;
 					}

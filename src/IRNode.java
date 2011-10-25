@@ -30,6 +30,7 @@ public class IRNode {
 		READF,
 		WRITEI,
 		WRITEF,
+		WRITES,
 		JSR
 	}
 	
