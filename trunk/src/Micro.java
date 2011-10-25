@@ -394,13 +394,18 @@ public class Micro {
 			return toRet;
 		}else{
 			//literal or symbol. just return
-			toRet.reg = AST.getText();			
+			
+			toRet.reg = genTempReg();	
+			
+			n.op1 = AST.getText();
+			n.result = toRet.reg;
+			
 			try
 			{
-				float literal = Float.parseFloat(toRet.reg);
+				float literal = Float.parseFloat(n.op1);
 				if(literal == (int)literal)
 				{
-					toRet.type = IRExpr.RegType.INT;
+					toRet.type = IRExpr.RegType.INT;					
 				}
 				else
 				{
@@ -409,7 +414,7 @@ public class Micro {
 			}
 			catch(NumberFormatException e)
 			{
-				if(isFloatSymbol(toRet.reg,symbolTable))
+				if(isFloatSymbol(n.op1,symbolTable))
 				{
 					toRet.type = IRExpr.RegType.FLOAT;
 				}
@@ -418,7 +423,7 @@ public class Micro {
 					toRet.type = IRExpr.RegType.INT;
 				}
 			}
-			
+			n.opCode = (toRet.type == IRExpr.RegType.FLOAT) ? (IRNode.IROp.STOREF) : (IRNode.IROp.STOREI);
 			return toRet;
 		}
 		
