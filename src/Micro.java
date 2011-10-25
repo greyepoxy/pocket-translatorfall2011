@@ -14,7 +14,7 @@ import org.antlr.runtime.tree.Tree;
 public class Micro {
 
 	//TODO: CHANGE BEFORE SUBMISSION!!!!!!!!!!!!!!!!!!!!!!!
-	private static final boolean DEBUG_PRINT_STATEMENTS = true;
+	public static final boolean DEBUG_PRINT_STATEMENTS = true;
 	
 	
 	/**
@@ -62,7 +62,7 @@ public class Micro {
 
             	if(DEBUG_PRINT_STATEMENTS)
             	{
-            		MicroParserParser.TableEntry te = parser.new TableEntry("$DEBUG","STRING","\n");
+            		MicroParserParser.TableEntry te = parser.new TableEntry("DEBUGINATOR9000","STRING","\\n");
             		parser.tableOfTables.get(new Integer(0)).add(te);
             	}
             	
@@ -313,7 +313,7 @@ public class Micro {
 				n.opCode = IRNode.IROp.WRITES;
 				n.op1 = "";
 				n.op2 = "";
-				n.result = "$DEBUG";	
+				n.result = "DEBUGINATOR9000";	
 				IR.add(n);
 			}
 			
