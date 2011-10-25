@@ -62,7 +62,7 @@ public class Micro {
 
             	if(DEBUG_PRINT_STATEMENTS)
             	{
-            		MicroParserParser.TableEntry te = parser.new TableEntry("DEBUGINATOR9000","STRING","\\n");
+            		MicroParserParser.TableEntry te = parser.new TableEntry("DEBUGINATOR9000","STRING","\"\\n\"");
             		parser.tableOfTables.get(new Integer(0)).add(te);
             	}
             	
