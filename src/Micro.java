@@ -424,6 +424,7 @@ public class Micro {
 				}
 			}
 			n.opCode = (toRet.type == IRExpr.RegType.FLOAT) ? (IRNode.IROp.STOREF) : (IRNode.IROp.STOREI);
+			IR.add(n);
 			return toRet;
 		}
 		
