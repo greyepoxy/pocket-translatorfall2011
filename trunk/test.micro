@@ -18,6 +18,7 @@ BEGIN
   	WHILE (j < 11);
 
 	ENDIF
+	WRITE (a,b);
 	RETURN a+b;
 	END
 END
