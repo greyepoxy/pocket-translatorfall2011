@@ -237,7 +237,7 @@ public class TinyNode {
 			}*/
 			// for now only have to worry about main, and no variables to put on stack
 			//  so no link/unlink expressions.
-			tinyOps.add(new TinyNode(TinyOp.label, irNode.op1, ""));
+			tinyOps.add(new TinyNode(TinyOp.label, processArg(irNode.op1), ""));
 			break;
 		case READI:
 			tinyOps.add(new TinyNode(TinyOp.sys_readi, processArg(irNode.result), ""));
