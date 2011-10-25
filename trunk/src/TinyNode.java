@@ -7,6 +7,7 @@ public class TinyNode {
 	
 	public enum TinyOp {
 		var,
+		str,
 		label,
 		jsr,
 		ret,
@@ -61,6 +62,8 @@ public class TinyNode {
 			return String.format("sys writei %s", this.arg1);
 		case sys_writer:
 			return String.format("sys writer %s", this.arg1);
+		case sys_writes:
+			return String.format("sys writes %s", this.arg1);
 		case sys_readi:
 			return String.format("sys readi %s", this.arg1);
 		case sys_readr:
@@ -83,7 +86,12 @@ public class TinyNode {
 		// global variable declarations
 		//  global variables get memory locations
 		for (int i = 0; i < currentTable.size(); i++)
-			tiny.add(new TinyNode(TinyOp.var, currentTable.get(i).Name, ""));
+		{
+			if (currentTable.get(i).Type == "STRING")
+				tiny.add(new TinyNode(TinyOp.str, currentTable.get(i).Name, currentTable.get(i).Value));
+			else
+				tiny.add(new TinyNode(TinyOp.var, currentTable.get(i).Name, ""));
+		}
 		
 		tiny.add(new TinyNode(TinyOp.push, "", ""));
 		tiny.add(new TinyNode(TinyOp.jsr, "main", ""));
@@ -251,6 +259,8 @@ public class TinyNode {
 		case WRITEF:
 			tinyOps.add(new TinyNode(TinyOp.sys_writer, processArg(irNode.result), ""));
 			break;
+		case WRITES:
+			tinyOps.add(new TinyNode(TinyOp.sys_writes, processArg(irNode.result), ""));
 		default:
 			break;
 		}
