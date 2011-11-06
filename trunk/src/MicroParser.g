@@ -6,6 +6,7 @@ options{
 tokens{
 	LABEL;
         FUNCTION_BODY;
+        FUNCTION_PARAMS;
         IF_COND;
         IF_MAIN;
         IF_ELSE;
@@ -145,9 +146,9 @@ id_tail :	',' id {idList.add($id.text);} -> ^(id)
 
 // Function Parameter List
 param_decl_list : param_decl (',' param_decl)*
-	;
+	->^(FUNCTION_PARAMS param_decl+);
 
-param_decl : Var_type id
+param_decl : Var_type! id
 	;
 
 // Function Declarations
@@ -163,7 +164,7 @@ func_decl : 'FUNCTION' any_type id '('param_decl_list?')' 'BEGIN'
  
 func_body 'END' 
 
-{currentTable = tableOfTables.get(new Integer(0));} -> ^('FUNCTION' id ^(FUNCTION_BODY func_body))
+{currentTable = tableOfTables.get(new Integer(0));} -> ^('FUNCTION' id  param_decl_list? ^(FUNCTION_BODY func_body))
 
 	;
     
