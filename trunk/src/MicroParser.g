@@ -8,6 +8,7 @@ tokens{
         FUNCTION_BODY;
         FUNCTION_PARAMS;
         FUNCTION_CALL;
+        PARAM;
         IF_COND;
         IF_MAIN;
         IF_ELSE;
@@ -149,8 +150,8 @@ id_tail :	',' id {idList.add($id.text);} -> ^(id)
 param_decl_list : param_decl (',' param_decl)*
 	->^(FUNCTION_PARAMS param_decl+);
 
-param_decl : Var_type! id
-	;
+param_decl : Var_type id
+	-> ^(PARAM Var_type id);
 
 // Function Declarations
 func_declarations : (func_decl)*
