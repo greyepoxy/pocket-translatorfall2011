@@ -166,7 +166,7 @@ func_decl : 'FUNCTION' any_type id '('param_decl_list?')' 'BEGIN'
  
 func_body 'END' 
 
-{currentTable = tableOfTables.get(new Integer(0));} -> ^('FUNCTION' id  param_decl_list? ^(FUNCTION_BODY func_body))
+{currentTable = tableOfTables.get(new Integer(0));} -> ^('FUNCTION' id any_type param_decl_list? ^(FUNCTION_BODY func_body))
 
 	;
     
