@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g 2011-11-06 15:15:02
+// $ANTLR 3.4 /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g 2011-11-06 15:26:39
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class MicroParserLexer extends Lexer {
     public static final int EOF=-1;
-    public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
     public static final int T__26=26;
@@ -28,6 +27,7 @@ public class MicroParserLexer extends Lexer {
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__42=42;
+    public static final int T__43=43;
     public static final int Addop=4;
     public static final int COMMENT=5;
     public static final int Compop=6;
@@ -35,18 +35,19 @@ public class MicroParserLexer extends Lexer {
     public static final int DO_MAIN=8;
     public static final int FLOATLITERAL=9;
     public static final int FUNCTION_BODY=10;
-    public static final int FUNCTION_PARAMS=11;
-    public static final int IDENTIFIER=12;
-    public static final int IF_COND=13;
-    public static final int IF_ELSE=14;
-    public static final int IF_MAIN=15;
-    public static final int INTLITERAL=16;
-    public static final int LABEL=17;
-    public static final int Mulop=18;
-    public static final int Program_start=19;
-    public static final int STRINGLITERAL=20;
-    public static final int Var_type=21;
-    public static final int WS=22;
+    public static final int FUNCTION_CALL=11;
+    public static final int FUNCTION_PARAMS=12;
+    public static final int IDENTIFIER=13;
+    public static final int IF_COND=14;
+    public static final int IF_ELSE=15;
+    public static final int IF_MAIN=16;
+    public static final int INTLITERAL=17;
+    public static final int LABEL=18;
+    public static final int Mulop=19;
+    public static final int Program_start=20;
+    public static final int STRINGLITERAL=21;
+    public static final int Var_type=22;
+    public static final int WS=23;
 
     // delegates
     // delegators
@@ -63,36 +64,15 @@ public class MicroParserLexer extends Lexer {
     }
     public String getGrammarFileName() { return "/home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g"; }
 
-    // $ANTLR start "T__23"
-    public final void mT__23() throws RecognitionException {
-        try {
-            int _type = T__23;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:2:7: ( '(' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:2:9: '('
-            {
-            match('('); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__23"
-
     // $ANTLR start "T__24"
     public final void mT__24() throws RecognitionException {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:3:7: ( ')' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:3:9: ')'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:2:7: ( '(' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:2:9: '('
             {
-            match(')'); 
+            match('('); 
 
             }
 
@@ -110,10 +90,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:4:7: ( ',' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:4:9: ','
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:3:7: ( ')' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:3:9: ')'
             {
-            match(','); 
+            match(')'); 
 
             }
 
@@ -131,12 +111,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:5:7: ( ':=' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:5:9: ':='
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:4:7: ( ',' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:4:9: ','
             {
-            match(":="); 
-
-
+            match(','); 
 
             }
 
@@ -154,10 +132,12 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:6:7: ( ';' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:6:9: ';'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:5:7: ( ':=' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:5:9: ':='
             {
-            match(';'); 
+            match(":="); 
+
+
 
             }
 
@@ -175,12 +155,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:7:7: ( 'BEGIN' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:7:9: 'BEGIN'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:6:7: ( ';' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:6:9: ';'
             {
-            match("BEGIN"); 
-
-
+            match(';'); 
 
             }
 
@@ -198,10 +176,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:8:7: ( 'DO' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:8:9: 'DO'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:7:7: ( 'BEGIN' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:7:9: 'BEGIN'
             {
-            match("DO"); 
+            match("BEGIN"); 
 
 
 
@@ -221,10 +199,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:9:7: ( 'ELSE' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:9:9: 'ELSE'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:8:7: ( 'DO' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:8:9: 'DO'
             {
-            match("ELSE"); 
+            match("DO"); 
 
 
 
@@ -244,10 +222,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:10:7: ( 'END' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:10:9: 'END'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:9:7: ( 'ELSE' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:9:9: 'ELSE'
             {
-            match("END"); 
+            match("ELSE"); 
 
 
 
@@ -267,10 +245,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:11:7: ( 'ENDIF' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:11:9: 'ENDIF'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:10:7: ( 'END' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:10:9: 'END'
             {
-            match("ENDIF"); 
+            match("END"); 
 
 
 
@@ -290,10 +268,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:12:7: ( 'FUNCTION' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:12:9: 'FUNCTION'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:11:7: ( 'ENDIF' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:11:9: 'ENDIF'
             {
-            match("FUNCTION"); 
+            match("ENDIF"); 
 
 
 
@@ -313,10 +291,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:13:7: ( 'IF' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:13:9: 'IF'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:12:7: ( 'FUNCTION' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:12:9: 'FUNCTION'
             {
-            match("IF"); 
+            match("FUNCTION"); 
 
 
 
@@ -336,10 +314,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:14:7: ( 'PROGRAM' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:14:9: 'PROGRAM'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:13:7: ( 'IF' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:13:9: 'IF'
             {
-            match("PROGRAM"); 
+            match("IF"); 
 
 
 
@@ -359,10 +337,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:15:7: ( 'READ' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:15:9: 'READ'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:14:7: ( 'PROGRAM' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:14:9: 'PROGRAM'
             {
-            match("READ"); 
+            match("PROGRAM"); 
 
 
 
@@ -382,10 +360,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:16:7: ( 'RETURN' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:16:9: 'RETURN'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:15:7: ( 'READ' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:15:9: 'READ'
             {
-            match("RETURN"); 
+            match("READ"); 
 
 
 
@@ -405,10 +383,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:17:7: ( 'STRING' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:17:9: 'STRING'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:16:7: ( 'RETURN' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:16:9: 'RETURN'
             {
-            match("STRING"); 
+            match("RETURN"); 
 
 
 
@@ -428,10 +406,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:18:7: ( 'THEN' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:18:9: 'THEN'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:17:7: ( 'STRING' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:17:9: 'STRING'
             {
-            match("THEN"); 
+            match("STRING"); 
 
 
 
@@ -451,10 +429,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:19:7: ( 'VOID' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:19:9: 'VOID'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:18:7: ( 'THEN' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:18:9: 'THEN'
             {
-            match("VOID"); 
+            match("THEN"); 
 
 
 
@@ -474,10 +452,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:20:7: ( 'WHILE' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:20:9: 'WHILE'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:19:7: ( 'VOID' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:19:9: 'VOID'
             {
-            match("WHILE"); 
+            match("VOID"); 
 
 
 
@@ -497,6 +475,29 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:20:7: ( 'WHILE' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:20:9: 'WHILE'
+            {
+            match("WHILE"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__42"
+
+    // $ANTLR start "T__43"
+    public final void mT__43() throws RecognitionException {
+        try {
+            int _type = T__43;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
             // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:21:7: ( 'WRITE' )
             // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:21:9: 'WRITE'
             {
@@ -513,14 +514,14 @@ public class MicroParserLexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__42"
+    // $ANTLR end "T__43"
 
     // $ANTLR start "Var_type"
     public final void mVar_type() throws RecognitionException {
         try {
             int _type = Var_type;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:134:10: ( 'FLOAT' | 'INT' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:135:10: ( 'FLOAT' | 'INT' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -539,7 +540,7 @@ public class MicroParserLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:134:12: 'FLOAT'
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:135:12: 'FLOAT'
                     {
                     match("FLOAT"); 
 
@@ -548,7 +549,7 @@ public class MicroParserLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:134:22: 'INT'
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:135:22: 'INT'
                     {
                     match("INT"); 
 
@@ -572,7 +573,7 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = Addop;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:216:7: ( '+' | '-' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:217:7: ( '+' | '-' )
             // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:
             {
             if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
@@ -601,7 +602,7 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = Mulop;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:219:7: ( '*' | '/' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:220:7: ( '*' | '/' )
             // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:
             {
             if ( input.LA(1)=='*'||input.LA(1)=='/' ) {
@@ -630,7 +631,7 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = Compop;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:231:8: ( '<' | '>' | '=' | '!=' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:232:8: ( '<' | '>' | '=' | '!=' )
             int alt2=4;
             switch ( input.LA(1) ) {
             case '<':
@@ -663,28 +664,28 @@ public class MicroParserLexer extends Lexer {
 
             switch (alt2) {
                 case 1 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:231:10: '<'
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:232:10: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 2 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:231:16: '>'
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:232:16: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 3 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:231:22: '='
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:232:22: '='
                     {
                     match('='); 
 
                     }
                     break;
                 case 4 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:231:28: '!='
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:232:28: '!='
                     {
                     match("!="); 
 
@@ -708,8 +709,8 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:245:13: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:245:15: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:246:13: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:246:15: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -721,7 +722,7 @@ public class MicroParserLexer extends Lexer {
             }
 
 
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:245:39: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:246:39: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop3:
             do {
                 int alt3=2;
@@ -771,10 +772,10 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:248:12: ( ( '0' .. '9' )+ )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:248:14: ( '0' .. '9' )+
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:249:12: ( ( '0' .. '9' )+ )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:249:14: ( '0' .. '9' )+
             {
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:248:14: ( '0' .. '9' )+
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:249:14: ( '0' .. '9' )+
             int cnt4=0;
             loop4:
             do {
@@ -829,7 +830,7 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = FLOATLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:252:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* | '.' ( '0' .. '9' )+ )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:253:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* | '.' ( '0' .. '9' )+ )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -848,9 +849,9 @@ public class MicroParserLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:252:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )*
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:253:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )*
                     {
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:252:9: ( '0' .. '9' )+
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:253:9: ( '0' .. '9' )+
                     int cnt5=0;
                     loop5:
                     do {
@@ -891,7 +892,7 @@ public class MicroParserLexer extends Lexer {
 
                     match('.'); 
 
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:252:25: ( '0' .. '9' )*
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:253:25: ( '0' .. '9' )*
                     loop6:
                     do {
                         int alt6=2;
@@ -928,11 +929,11 @@ public class MicroParserLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:253:9: '.' ( '0' .. '9' )+
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:254:9: '.' ( '0' .. '9' )+
                     {
                     match('.'); 
 
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:253:13: ( '0' .. '9' )+
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:254:13: ( '0' .. '9' )+
                     int cnt7=0;
                     loop7:
                     do {
@@ -989,14 +990,14 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:257:5: ( '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:257:9: '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:258:5: ( '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:258:9: '--' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("--"); 
 
 
 
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:257:14: (~ ( '\\n' | '\\r' ) )*
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:258:14: (~ ( '\\n' | '\\r' ) )*
             loop9:
             do {
                 int alt9=2;
@@ -1030,7 +1031,7 @@ public class MicroParserLexer extends Lexer {
             } while (true);
 
 
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:257:28: ( '\\r' )?
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:258:28: ( '\\r' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1039,7 +1040,7 @@ public class MicroParserLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:257:28: '\\r'
+                    // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:258:28: '\\r'
                     {
                     match('\r'); 
 
@@ -1069,12 +1070,12 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:265:5: ( '\"' (~ ( '\"' ) )* '\"' )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:265:8: '\"' (~ ( '\"' ) )* '\"'
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:266:5: ( '\"' (~ ( '\"' ) )* '\"' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:266:8: '\"' (~ ( '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:265:12: (~ ( '\"' ) )*
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:266:12: (~ ( '\"' ) )*
             loop11:
             do {
                 int alt11=2;
@@ -1126,8 +1127,8 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:268:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:268:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:269:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:269:9: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1157,8 +1158,8 @@ public class MicroParserLexer extends Lexer {
         try {
             int _type = Program_start;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:276:2: ()
-            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:277:2: 
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:277:2: ()
+            // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:278:2: 
             {
             }
 
@@ -1172,166 +1173,166 @@ public class MicroParserLexer extends Lexer {
     // $ANTLR end "Program_start"
 
     public void mTokens() throws RecognitionException {
-        // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:8: ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | Var_type | Addop | Mulop | Compop | IDENTIFIER | INTLITERAL | FLOATLITERAL | COMMENT | STRINGLITERAL | WS | Program_start )
+        // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:8: ( T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | Var_type | Addop | Mulop | Compop | IDENTIFIER | INTLITERAL | FLOATLITERAL | COMMENT | STRINGLITERAL | WS | Program_start )
         int alt12=31;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:10: T__23
-                {
-                mT__23(); 
-
-
-                }
-                break;
-            case 2 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:16: T__24
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:10: T__24
                 {
                 mT__24(); 
 
 
                 }
                 break;
-            case 3 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:22: T__25
+            case 2 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:16: T__25
                 {
                 mT__25(); 
 
 
                 }
                 break;
-            case 4 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:28: T__26
+            case 3 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:22: T__26
                 {
                 mT__26(); 
 
 
                 }
                 break;
-            case 5 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:34: T__27
+            case 4 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:28: T__27
                 {
                 mT__27(); 
 
 
                 }
                 break;
-            case 6 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:40: T__28
+            case 5 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:34: T__28
                 {
                 mT__28(); 
 
 
                 }
                 break;
-            case 7 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:46: T__29
+            case 6 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:40: T__29
                 {
                 mT__29(); 
 
 
                 }
                 break;
-            case 8 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:52: T__30
+            case 7 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:46: T__30
                 {
                 mT__30(); 
 
 
                 }
                 break;
-            case 9 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:58: T__31
+            case 8 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:52: T__31
                 {
                 mT__31(); 
 
 
                 }
                 break;
-            case 10 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:64: T__32
+            case 9 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:58: T__32
                 {
                 mT__32(); 
 
 
                 }
                 break;
-            case 11 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:70: T__33
+            case 10 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:64: T__33
                 {
                 mT__33(); 
 
 
                 }
                 break;
-            case 12 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:76: T__34
+            case 11 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:70: T__34
                 {
                 mT__34(); 
 
 
                 }
                 break;
-            case 13 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:82: T__35
+            case 12 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:76: T__35
                 {
                 mT__35(); 
 
 
                 }
                 break;
-            case 14 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:88: T__36
+            case 13 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:82: T__36
                 {
                 mT__36(); 
 
 
                 }
                 break;
-            case 15 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:94: T__37
+            case 14 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:88: T__37
                 {
                 mT__37(); 
 
 
                 }
                 break;
-            case 16 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:100: T__38
+            case 15 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:94: T__38
                 {
                 mT__38(); 
 
 
                 }
                 break;
-            case 17 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:106: T__39
+            case 16 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:100: T__39
                 {
                 mT__39(); 
 
 
                 }
                 break;
-            case 18 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:112: T__40
+            case 17 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:106: T__40
                 {
                 mT__40(); 
 
 
                 }
                 break;
-            case 19 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:118: T__41
+            case 18 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:112: T__41
                 {
                 mT__41(); 
 
 
                 }
                 break;
-            case 20 :
-                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:124: T__42
+            case 19 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:118: T__42
                 {
                 mT__42(); 
+
+
+                }
+                break;
+            case 20 :
+                // /home/shay/a/jhuffake/ECE468/pocket-translatorfall2011/src/MicroParser.g:1:124: T__43
+                {
+                mT__43(); 
 
 
                 }
@@ -1605,7 +1606,7 @@ public class MicroParserLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | Var_type | Addop | Mulop | Compop | IDENTIFIER | INTLITERAL | FLOATLITERAL | COMMENT | STRINGLITERAL | WS | Program_start );";
+            return "1:1: Tokens : ( T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | Var_type | Addop | Mulop | Compop | IDENTIFIER | INTLITERAL | FLOATLITERAL | COMMENT | STRINGLITERAL | WS | Program_start );";
         }
     }
  
