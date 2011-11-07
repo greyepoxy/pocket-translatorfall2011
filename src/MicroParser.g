@@ -207,7 +207,7 @@ postfix_expr : primary | call_expr
 	;
 
 call_expr : id '('(expr_list)? ')'
-	->^(FUNCTION_CALL id expr_list);
+	->^(FUNCTION_CALL id expr_list?);
 
 expr_list : expr (',' expr)*
 	->^(FUNCTION_PARAMS expr+);
