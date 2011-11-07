@@ -41,7 +41,7 @@ public class FunctionClass {
 		public RegType type;
 	}
 
-	static private Stack<String> labelStack = new Stack<String>();;
+	static private Stack<String> labelStack = new Stack<String>();
 	static private int regCount = 0;	
 	static private int labelCount = 0;
 	
@@ -59,7 +59,8 @@ public class FunctionClass {
 	{
 			name = AST.getChild(0).getText();
 			type = AST.getChild(1).getText();
-			System.err.println("New Function: " + name);
+			if (Micro.DEBUG_PRINT_STATEMENTS)
+				System.err.println("New Function: " + name);
 			symbolTable = st;
 			IR = new LinkedList<IRNode>();
 			paramTable = new  ArrayList<MicroParserParser.TableEntry>();
@@ -595,13 +596,13 @@ public class FunctionClass {
 		n.result = "";
 		IR.add(n);
 		
-		for(int i =0; i< Micro.SYSTEM_REGISTER_COUNT; i++)
+		for(int i = Micro.SYSTEM_REGISTER_COUNT - 1; i >= 0; i--)
 		{
 			n = new IRNode();
 			n.opCode = IRNode.IROp.POP;
 			n.op1 = "";
 			n.op2 = "";
-			n.result = "";
+			n.result = ""; // genSysReg(i); For now leave out since no register allocation
 			IR.add(n);
 		}
 		

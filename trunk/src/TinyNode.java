@@ -78,7 +78,7 @@ public class TinyNode {
 		}
 	}
 	
-	public static LinkedList<TinyNode> irToTiny(LinkedList<IRNode> IR, MicroParserParser parser) {
+	public static LinkedList<TinyNode> irToTiny(ArrayList<FunctionClass> functions, MicroParserParser parser) {
 		
 		LinkedList<TinyNode> tiny = new LinkedList<TinyNode>();
 		ArrayList<MicroParserParser.TableEntry> currentTable = parser.tableOfTables.get(new Integer(0));
@@ -93,174 +93,224 @@ public class TinyNode {
 				tiny.add(new TinyNode(TinyOp.var, currentTable.get(i).Name, ""));
 		}
 		
-		tiny.add(new TinyNode(TinyOp.push, "", ""));
+		// Main function call, once it completes system is halted.
 		tiny.add(new TinyNode(TinyOp.jsr, "main", ""));
 		tiny.add(new TinyNode(TinyOp.sys_halt, "", ""));
 		
-		// call to main
-		//  only assignment statements of global variables
-		Iterator<IRNode> irIterator = IR.iterator();
+		// FOREACH FUNCTION IN FUNCTIONS. GENERATE CODE!!!!
+		//  ADD GENERATED CODE TO tiny list.
+		for (int i = 0; i < functions.size(); i++)
+		{
+			tiny.addAll(ProcessFunction(functions.get(i)));
+		}
+		
+		tiny.add(new TinyNode(TinyOp.end, "", ""));
+		
+		return tiny;
+	}
+	
+	// Need some kind of function class. Function class has code for function, and local symbol table.
+	private static LinkedList<TinyNode> ProcessFunction(FunctionClass f)
+	{
+		LinkedList<TinyNode> tiny = new LinkedList<TinyNode>();
+		
+		Iterator<IRNode> irIterator = f.IR.iterator();
 		IRNode currentNode;
 		while (irIterator.hasNext())
 		{
 			currentNode = irIterator.next();
-			LinkedList<TinyNode> tinyOps = processIRNode(currentNode, parser);
+			LinkedList<TinyNode> tinyOps = processIRNode(currentNode, f);
 			tiny.addAll(tinyOps);
 		}
-		//temporary return for the end of main until functions are implemented
-		tiny.add(new TinyNode(TinyOp.ret, "",""));
-		tiny.add(new TinyNode(TinyOp.end, "", ""));
+		
 		return tiny;
 	}
 	
-	/*public static LinkedList<TinyNode> processFunctionDec(ArrayList<MicroParserParser.TableEntry> varsTable)
+	private static String processLinkArg(String arg)
 	{
-		LinkedList<TinyNode> tiny = new LinkedList<TinyNode>();
-		for (integer i = 0; i < varsTable.size(); i++)
-			tiny.add(new TinyNode(TinyOp.var, varsTable.get(i).Name, null));
-		return tiny;
-	}*/
+		// If temporary linking variable convert to a real linking variable
+		if (arg.startsWith("$L"))
+			return String.format("l%s", arg.substring(2));
+		else
+			return arg;
+	}
 	
-	private static String processArg(String arg)
+	private static String processArg(String arg, FunctionClass f)
 	{
 		String newArg;
-		if (arg.startsWith("$T"))
+		// Temporary variable or Register directly translate to actual register
+		if (arg.startsWith("$T") || arg.startsWith("$r"))
 			newArg = String.format("r%s", arg.substring(2));
-		else if (arg.startsWith("$L"))
-			newArg = String.format("l%s", arg.substring(2));
+		// Check to see if return variable
+		else if (arg.equals("$R"))
+		{
+			int returnValueOnStack = 2 + Micro.SYSTEM_REGISTER_COUNT + f.paramTable.size();
+			newArg = String.format("$%s", returnValueOnStack);
+		}
+		// Possible local variable or parameter
 		else
-			newArg = arg;
+		{
+			int displacment = 0;
+			//check to see if arg is a parameter
+			for (int i = 0; i < f.paramTable.size(); i++)
+			{
+				MicroParserParser.TableEntry te = f.paramTable.get(i);
+				if(te.Name.equals(arg)){
+					displacment = 1 + Micro.SYSTEM_REGISTER_COUNT + f.paramTable.size() - i;
+					break;
+				}
+			}
+			if (displacment == 0)
+			{
+				//check to see if arg is a local variable
+				ArrayList<MicroParserParser.TableEntry> symTab = f.symbolTable.get(new Integer(1));
+				for (int i = 0; i < symTab.size(); i++)
+				{
+					MicroParserParser.TableEntry te  = symTab.get(i);
+					if(te.Name.equals(arg)){
+							displacment = -(i + 1);
+						break;
+					}
+				}
+			}
+			// If symbol not found assume global or immediate value and no replacement is necessary. 
+			if (displacment == 0)
+				newArg = arg;
+			// Symbol found in local or parameter list so set to stack offset
+			else
+				newArg = String.format("$%s", displacment);
+		}
 		return newArg;
 	}
 	
-	public static LinkedList<TinyNode> processIRNode(IRNode irNode, MicroParserParser parser)
+	public static LinkedList<TinyNode> processIRNode(IRNode irNode, FunctionClass f)
 	{
 		LinkedList<TinyNode> tinyOps = new LinkedList<TinyNode>();
 		switch (irNode.opCode)
 		{
 		case ADDI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
-			tinyOps.add(new TinyNode(TinyOp.addi, processArg(irNode.op2), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+			tinyOps.add(new TinyNode(TinyOp.addi, processArg(irNode.op2, f), processArg(irNode.result, f)));
 			break;
 		case ADDF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
-			tinyOps.add(new TinyNode(TinyOp.addr, processArg(irNode.op2), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+			tinyOps.add(new TinyNode(TinyOp.addr, processArg(irNode.op2, f), processArg(irNode.result, f)));
 			break;
 		case SUBI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
-			tinyOps.add(new TinyNode(TinyOp.subi, processArg(irNode.op2), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+			tinyOps.add(new TinyNode(TinyOp.subi, processArg(irNode.op2, f), processArg(irNode.result, f)));
 			break;
 		case SUBF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
-			tinyOps.add(new TinyNode(TinyOp.subr, processArg(irNode.op2), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+			tinyOps.add(new TinyNode(TinyOp.subr, processArg(irNode.op2, f), processArg(irNode.result, f)));
 			break;
 		case MULTI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
-			tinyOps.add(new TinyNode(TinyOp.muli, processArg(irNode.op2), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+			tinyOps.add(new TinyNode(TinyOp.muli, processArg(irNode.op2, f), processArg(irNode.result, f)));
 			break;
 		case MULTF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
-			tinyOps.add(new TinyNode(TinyOp.mulr, processArg(irNode.op2), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+			tinyOps.add(new TinyNode(TinyOp.mulr, processArg(irNode.op2, f), processArg(irNode.result, f)));
 			break;
 		case DIVI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
-			tinyOps.add(new TinyNode(TinyOp.divi, processArg(irNode.op2), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+			tinyOps.add(new TinyNode(TinyOp.divi, processArg(irNode.op2, f), processArg(irNode.result, f)));
 			break;
 		case DIVF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
-			tinyOps.add(new TinyNode(TinyOp.divr, processArg(irNode.op2), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+			tinyOps.add(new TinyNode(TinyOp.divr, processArg(irNode.op2, f), processArg(irNode.result, f)));
 			break;
 		case STOREI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
 			break;
 		case STOREF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1), processArg(irNode.result)));
+			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
 			break;
 		case BGEI:
-			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jge), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jge), processLinkArg(irNode.result), ""));
 			break;
 		case BGTI:
-			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jgt), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jgt), processLinkArg(irNode.result), ""));
 			break;
 		case BLEI:
-			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jle), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jle), processLinkArg(irNode.result), ""));
 			break;
 		case BLTI:
-			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jlt), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jlt), processLinkArg(irNode.result), ""));
 			break;
 		case BEQI:
-			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jeq), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jeq), processLinkArg(irNode.result), ""));
 			break;
 		case BNEI:
-			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jne), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpi), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jne), processLinkArg(irNode.result), ""));
 			break;
 		case BGEF:
-			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jge), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jge), processLinkArg(irNode.result), ""));
 			break;
 		case BGTF:
-			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jgt), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jgt), processLinkArg(irNode.result), ""));
 			break;
 		case BLEF:
-			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jle), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jle), processLinkArg(irNode.result), ""));
 			break;
 		case BLTF:
-			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jlt), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jlt), processLinkArg(irNode.result), ""));
 			break;
 		case BEQF:
-			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jeq), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jeq), processLinkArg(irNode.result), ""));
 			break;
 		case BNEF:
-			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1), processArg(irNode.op2)));
-			tinyOps.add(new TinyNode((TinyOp.jne), processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode((TinyOp.cmpr), processArg(irNode.op1, f), processArg(irNode.op2, f)));
+			tinyOps.add(new TinyNode((TinyOp.jne), processLinkArg(irNode.result), ""));
 			break;
 		case JUMP:
-			tinyOps.add(new TinyNode(TinyOp.jmp, processArg(irNode.op1), ""));
+			tinyOps.add(new TinyNode(TinyOp.jmp, processLinkArg(irNode.op1), ""));
+			break;
+		case POP:
+			tinyOps.add(new TinyNode(TinyOp.pop, processArg(irNode.result, f), ""));
+			break;
+		case PSH:
+			tinyOps.add(new TinyNode(TinyOp.push, processArg(irNode.op1, f), ""));
+			break;
+		case JSR:
+			tinyOps.add(new TinyNode(TinyOp.jsr, processLinkArg(irNode.op1), ""));
+			break;
+		case RET:
+			tinyOps.add(new TinyNode(TinyOp.unlnk, "", ""));
+			tinyOps.add(new TinyNode(TinyOp.ret, "", ""));
+			break;
+		case LINK:
+			tinyOps.add(new TinyNode(TinyOp.link, processArg(irNode.op1, f), ""));
 			break;
 		case LABEL:
-			/*if(parser.tableOfTableNames.containsValue(irNode.op1))
-			{
-				int key;
-				Iterator<Map.Entry<Integer,String>> tableNamesIterator = parser.tableOfTableNames.entrySet().iterator();
-				Map.Entry<Integer,String> entry;
-				while (tableNamesIterator.hasNext())
-				{
-					entry = tableNamesIterator.next();
-					if (entry.getValue() == irNode.op1)
-					{
-						key = entry.getKey();
-						break;
-					}
-				}
-			}*/
-			// for now only have to worry about main, and no variables to put on stack
-			//  so no link/unlink expressions.
-			tinyOps.add(new TinyNode(TinyOp.label, processArg(irNode.op1), ""));
+			tinyOps.add(new TinyNode(TinyOp.label, processLinkArg(irNode.op1), ""));
 			break;
 		case READI:
-			tinyOps.add(new TinyNode(TinyOp.sys_readi, processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode(TinyOp.sys_readi, processArg(irNode.result, f), ""));
 			break;
 		case READF:
-			tinyOps.add(new TinyNode(TinyOp.sys_readr, processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode(TinyOp.sys_readr, processArg(irNode.result, f), ""));
 			break;
 		case WRITEI:
-			tinyOps.add(new TinyNode(TinyOp.sys_writei, processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode(TinyOp.sys_writei, processArg(irNode.result, f), ""));
 			break;
 		case WRITEF:
-			tinyOps.add(new TinyNode(TinyOp.sys_writer, processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode(TinyOp.sys_writer, processArg(irNode.result, f), ""));
 			break;
 		case WRITES:
-			tinyOps.add(new TinyNode(TinyOp.sys_writes, processArg(irNode.result), ""));
+			tinyOps.add(new TinyNode(TinyOp.sys_writes, processArg(irNode.result, f), ""));
+			break;
 		default:
 			break;
 		}
