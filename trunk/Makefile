@@ -14,6 +14,7 @@ CLASSES = \
 		$(GENERATEDPATH)/src/MicroParserParser.java \
 		$(SOURCEPATH)/IRNode.java \
 		$(SOURCEPATH)/TinyNode.java \
+		$(SOURCEPATH)/FunctionClass.java \
 		$(SOURCEPATH)/Micro.java
 
 
