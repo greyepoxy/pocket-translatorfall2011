@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Stack;
 
 import java.util.LinkedList;
 
@@ -14,16 +13,11 @@ import org.antlr.runtime.tree.Tree;
 public class Micro {
 
 	//TODO: CHANGE BEFORE SUBMISSION!!!!!!!!!!!!!!!!!!!!!!!
-	public static final boolean DEBUG_PRINT_STATEMENTS = true;
+	public static final boolean DEBUG_PRINT_STATEMENTS = false;
 	
 	public static final int SYSTEM_REGISTER_COUNT = 4;
 	
 	
-	/**
-	 * @param args
-	 */
-	
-
 	
 	public static void main(String[] args) {
 					
@@ -59,11 +53,9 @@ public class Micro {
             			System.out.println("; " + IR.get(i).opCode + " " + IR.get(i).op1 + " " + IR.get(i).op2 +  " " + IR.get(i).result); 
             		}
             	}
-//				
             	
-            	
-//            	LinkedList<TinyNode> tiny = TinyNode.irToTiny(IR, parser);  
-//            	TinyNode.printTiny(tiny);
+            	LinkedList<TinyNode> tiny = TinyNode.irToTiny(FunctionClass.fList, parser);  
+            	TinyNode.printTiny(tiny);
 
             }
             catch(RecognitionException e) {
