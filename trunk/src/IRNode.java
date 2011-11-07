@@ -31,7 +31,11 @@ public class IRNode {
 		WRITEI,
 		WRITEF,
 		WRITES,
-		JSR
+		JSR, 
+		PSH,
+		POP,
+		RET,
+		LINK
 	}
 	
 	public IROp opCode;
