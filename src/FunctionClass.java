@@ -563,14 +563,15 @@ public class FunctionClass {
 			{
 				n = new IRNode();
 				n.opCode = IRNode.IROp.PSH;
-				String p = node.getChild(i).getText();
+				IRExpr op1;
+				op1 = genExpression(node.getChild(i));				
 				
-				if(! functionPrototypes.get(name).paramTypes.get(i).equals(getSymbolType(p)))
+				if(! functionPrototypes.get(name).paramTypes.get(i).equals(getTypeString(op1)))
 				{
 					System.err.println("Formal parameter type does not match actual parameter type in funciton " + name);
 					System.exit(1);
 				}
-				n.op1 = p;
+				n.op1 = op1.reg;
 				n.op2 = "";
 				n.result = "";
 				IR.add(n);
@@ -636,6 +637,14 @@ public class FunctionClass {
 		
 		return op;
 	}
+
+	private String getTypeString(IRExpr op1) {
+		// TODO Auto-generated method stub
+		if(op1.type == IRExpr.RegType.FLOAT) return "FLOAT";
+		if(op1.type == IRExpr.RegType.INT) return "INT";
+		return "UNKNOWN";
+	}
+
 
 	private String genSysReg(int i)
 	{
