@@ -94,6 +94,9 @@ public class TinyNode {
 		}
 		
 		// Main function call, once it completes system is halted.
+		tiny.add(new TinyNode(TinyOp.push, "", ""));
+		for (int i = 0; i < Micro.SYSTEM_REGISTER_COUNT; i++)
+			tiny.add(new TinyNode(TinyOp.push, String.format("r%d",i), ""));
 		tiny.add(new TinyNode(TinyOp.jsr, "main", ""));
 		tiny.add(new TinyNode(TinyOp.sys_halt, "", ""));
 		
