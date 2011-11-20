@@ -579,33 +579,12 @@ public class FunctionClass {
 			
 		}
 		
-		for(int i =0; i< Micro.SYSTEM_REGISTER_COUNT; i++)
-		{
-			n = new IRNode();
-			n.opCode = IRNode.IROp.PSH;
-			n.op1 = genSysReg(i);
-			n.op2 = "";
-			n.result = "";
-			IR.add(n);
-		}
-		
-		
 		n = new IRNode();
 		n.opCode = IRNode.IROp.JSR;
 		n.op1 = name;
 		n.op2 = "";
 		n.result = "";
 		IR.add(n);
-		
-		for(int i = Micro.SYSTEM_REGISTER_COUNT - 1; i >= 0; i--)
-		{
-			n = new IRNode();
-			n.opCode = IRNode.IROp.POP;
-			n.op1 = "";
-			n.op2 = "";
-			n.result = ""; // genSysReg(i); For now leave out since no register allocation
-			IR.add(n);
-		}
 		
 		if(AST.getChild(1) != null) // we have params
 		{
