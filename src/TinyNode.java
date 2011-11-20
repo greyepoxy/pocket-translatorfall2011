@@ -287,7 +287,11 @@ public class TinyNode {
 			tinyOps.add(new TinyNode(TinyOp.push, processArg(irNode.op1, f), ""));
 			break;
 		case JSR:
+			for (int i=0; i<Micro.SYSTEM_REGISTER_COUNT;i++)
+				tinyOps.add(new TinyNode(TinyOp.push, String.format("r%d",i), ""));
 			tinyOps.add(new TinyNode(TinyOp.jsr, processLinkArg(irNode.op1), ""));
+			for (int i=Micro.SYSTEM_REGISTER_COUNT - 1; i>=0;i--)
+				tinyOps.add(new TinyNode(TinyOp.pop, String.format("r%d",i), ""));
 			break;
 		case RET:
 			tinyOps.add(new TinyNode(TinyOp.unlnk, "", ""));
