@@ -233,9 +233,9 @@ public class FunctionClass {
 			String l2 = genLabel(); //label to jump around else
 			IRNode n = new IRNode();
 			n.opCode = IRNode.IROp.JUMP;
-			n.op1 = l2;
+			n.op1 = "";
 			n.op2 = "";
-			n.result = "";
+			n.result = l2;
 			
 			IR.add(n);
 			
