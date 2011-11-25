@@ -278,7 +278,7 @@ public class TinyNode {
 			tinyOps.add(new TinyNode((TinyOp.jne), processLinkArg(irNode.result), ""));
 			break;
 		case JUMP:
-			tinyOps.add(new TinyNode(TinyOp.jmp, processLinkArg(irNode.op1), ""));
+			tinyOps.add(new TinyNode(TinyOp.jmp, processLinkArg(irNode.result), ""));
 			break;
 		case POP:
 			tinyOps.add(new TinyNode(TinyOp.pop, processArg(irNode.result, f), ""));
