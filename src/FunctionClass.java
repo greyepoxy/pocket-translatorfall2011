@@ -348,18 +348,18 @@ public class FunctionClass {
 			boolean isString = isStringSymbol(AST.getChild(i).getText());
 			n.opCode = (isFloat) ? (IRNode.IROp.WRITEF):(IRNode.IROp.WRITEI);
 			n.opCode = (isString) ? (IRNode.IROp.WRITES):(n.opCode);
-			n.op1 = "";
+			n.op1 = AST.getChild(i).getText();
 			n.op2 = "";
-			n.result = AST.getChild(i).getText();
+			n.result = "";
 			IR.add(n);
 			
 			if(Micro.DEBUG_PRINT_STATEMENTS)
 			{
 				n = new IRNode();
 				n.opCode = IRNode.IROp.WRITES;
-				n.op1 = "";
+				n.op1 = "DEBUGINATOR9000";
 				n.op2 = "";
-				n.result = "DEBUGINATOR9000";	
+				n.result = ""; 	
 				IR.add(n);
 			}
 			

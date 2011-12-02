@@ -66,6 +66,7 @@ public class Micro {
             			
             			}
             			System.out.println("");
+            			System.out.println("NODE: " + c.toString());
             			System.out.print("CHILDREN: ");
             			for(int k =0; k< c.children.size(); k++)
             			{

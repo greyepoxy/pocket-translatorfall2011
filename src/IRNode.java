@@ -104,9 +104,9 @@ public TreeSet<String> getGen() {
 		case PSH:
 		case WRITEI:
 		case WRITEF:
-		case WRITES:
+		case WRITES:		
 			if(!op1.equals(""))
-			{
+			{				
 				try
 				{
 					float literal = Float.parseFloat(op1);
@@ -122,7 +122,7 @@ public TreeSet<String> getGen() {
 			{
 				try
 				{
-					float literal = Float.parseFloat(op1);
+					float literal = Float.parseFloat(op2);
 					
 				}
 				catch(NumberFormatException e)
@@ -195,6 +195,9 @@ public TreeSet<String> getGen() {
 		case JUMP:
 		case LABEL:
 		case JSR:
+		case POP:
+			if(result.equals(""))
+				return true;
 		case LINK:
 			return true;
 		}
