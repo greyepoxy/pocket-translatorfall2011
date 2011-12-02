@@ -310,13 +310,13 @@ public class TinyNode {
 			tinyOps.add(new TinyNode(TinyOp.sys_readr, processArg(irNode.result, f), ""));
 			break;
 		case WRITEI:
-			tinyOps.add(new TinyNode(TinyOp.sys_writei, processArg(irNode.result, f), ""));
+			tinyOps.add(new TinyNode(TinyOp.sys_writei, processArg(irNode.op1, f), ""));
 			break;
 		case WRITEF:
-			tinyOps.add(new TinyNode(TinyOp.sys_writer, processArg(irNode.result, f), ""));
+			tinyOps.add(new TinyNode(TinyOp.sys_writer, processArg(irNode.op1, f), ""));
 			break;
 		case WRITES:
-			tinyOps.add(new TinyNode(TinyOp.sys_writes, processArg(irNode.result, f), ""));
+			tinyOps.add(new TinyNode(TinyOp.sys_writes, processArg(irNode.op1, f), ""));
 			break;
 		default:
 			break;

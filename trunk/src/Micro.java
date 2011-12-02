@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.TreeSet;
 
 import java.util.LinkedList;
@@ -81,18 +84,28 @@ public class Micro {
             				System.out.print(c.outSet.toArray()[k] + " ");
             			
             			}
-            			System.out.println("");
-            			System.out.println("");
+            			System.out.print("\n\n\n");
+            		}
+            		
+            		System.out.println("--------------------------");
+            		System.out.println("Interference Graph");
+            		
+        			HashMap<String, ArrayList<String>> interGraph = GetFunctionInterferenceGraph(FunctionClass.fList.get(j));
+            		for (Entry<String,ArrayList<String>> entry : interGraph.entrySet())
+            		{
+            			System.out.print(entry.getKey() + ":");
+            			for (String s : entry.getValue())
+            				System.out.print(" " + s);
             			System.out.println("");
             		}
+            		
+            		System.out.print("\n\n\n");
             		
             		for(int i=0; i< IR.size(); i++)
             		{
             			System.out.println("; " + IR.get(i)); 
             		}
             	}
-            	
-            	
             	
             	LinkedList<TinyNode> tiny = TinyNode.irToTiny(FunctionClass.fList, parser);  
             	TinyNode.printTiny(tiny);
@@ -108,6 +121,34 @@ public class Micro {
 		}
 		
 		
+	}
+	
+	private static HashMap<String, ArrayList<String>> GetFunctionInterferenceGraph(FunctionClass f)
+	{
+		HashMap<String, ArrayList<String>> interferenceGraph = new HashMap<String, ArrayList<String>>();
+		
+		Iterator<IRNode> irIterator = f.IR.iterator();
+		IRNode currentNode;
+		while (irIterator.hasNext())
+		{
+			currentNode = irIterator.next();
+			for (String first : currentNode.outSet)
+			{
+				if (!first.startsWith("$T"))
+					continue;
+				if (!interferenceGraph.containsKey(first))
+					interferenceGraph.put(first, new ArrayList<String>());
+				ArrayList<String> curInterference = interferenceGraph.get(first);
+				for (String s : currentNode.outSet)
+				{
+					if (!first.equals(s) && !curInterference.contains(s) && s.startsWith("$T"))
+					{
+						curInterference.add(s);
+					}
+				}
+			}
+		}
+		return interferenceGraph;
 	}
 	
 	private static boolean genLiveness(IRNode n)
