@@ -194,9 +194,9 @@ public class TinyNode {
 		LinkedList<TinyNode> tinyOps = new LinkedList<TinyNode>();
 		int opIsResult;
 		TinyOp op = null;
-		if (irNode.op1.equals(irNode.result))
+		if (irNode.op1.startsWith("$T") && irNode.op1.equals(irNode.result))
 			opIsResult = 1;
-		else if (irNode.op2.equals(irNode.result))
+		else if (irNode.op2.startsWith("$T") && irNode.op2.equals(irNode.result))
 			opIsResult = 2;
 		else
 			opIsResult = 0;
