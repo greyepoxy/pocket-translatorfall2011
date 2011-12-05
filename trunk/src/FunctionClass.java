@@ -775,9 +775,10 @@ public class FunctionClass {
 			if (currentNode.op2.startsWith("$T"))
 				if (!interferenceGraph.containsKey(currentNode.op2))
 					interferenceGraph.put(currentNode.op2, new ArrayList<String>());
-			if (currentNode.result.startsWith("$T"))
+			if (currentNode.result.startsWith("$T")){
 				if (!interferenceGraph.containsKey(currentNode.result))
 					interferenceGraph.put(currentNode.result, new ArrayList<String>());
+			}
 			for (String first : currentNode.outSet)
 			{
 				if (!first.startsWith("$T"))
@@ -789,6 +790,15 @@ public class FunctionClass {
 					if (!first.equals(s) && s.startsWith("$T") && !curInterference.contains(s))
 						curInterference.add(s);
 				}
+			}
+			// Special case, op2 cannot equal result so add to interference graph if both are temporaries
+			if (currentNode.op2.startsWith("$T") && currentNode.result.startsWith("$T")){
+				ArrayList<String> curInterference = interferenceGraph.get(currentNode.op2);
+				if (!curInterference.contains(currentNode.result))
+					curInterference.add(currentNode.result);
+				curInterference = interferenceGraph.get(currentNode.result);
+				if (!curInterference.contains(currentNode.op2))
+					curInterference.add(currentNode.op2);
 			}
 		}
 		

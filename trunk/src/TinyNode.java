@@ -192,40 +192,17 @@ public class TinyNode {
 	public static LinkedList<TinyNode> processIRNode(IRNode irNode, FunctionClass f)
 	{
 		LinkedList<TinyNode> tinyOps = new LinkedList<TinyNode>();
+		int opIsResult;
+		TinyOp op = null;
+		if (irNode.op1.equals(irNode.result))
+			opIsResult = 1;
+		else if (irNode.op2.equals(irNode.result))
+			opIsResult = 2;
+		else
+			opIsResult = 0;
+			
 		switch (irNode.opCode)
 		{
-		case ADDI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
-			tinyOps.add(new TinyNode(TinyOp.addi, processArg(irNode.op2, f), processArg(irNode.result, f)));
-			break;
-		case ADDF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
-			tinyOps.add(new TinyNode(TinyOp.addr, processArg(irNode.op2, f), processArg(irNode.result, f)));
-			break;
-		case SUBI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
-			tinyOps.add(new TinyNode(TinyOp.subi, processArg(irNode.op2, f), processArg(irNode.result, f)));
-			break;
-		case SUBF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
-			tinyOps.add(new TinyNode(TinyOp.subr, processArg(irNode.op2, f), processArg(irNode.result, f)));
-			break;
-		case MULTI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
-			tinyOps.add(new TinyNode(TinyOp.muli, processArg(irNode.op2, f), processArg(irNode.result, f)));
-			break;
-		case MULTF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
-			tinyOps.add(new TinyNode(TinyOp.mulr, processArg(irNode.op2, f), processArg(irNode.result, f)));
-			break;
-		case DIVI:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
-			tinyOps.add(new TinyNode(TinyOp.divi, processArg(irNode.op2, f), processArg(irNode.result, f)));
-			break;
-		case DIVF:
-			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
-			tinyOps.add(new TinyNode(TinyOp.divr, processArg(irNode.op2, f), processArg(irNode.result, f)));
-			break;
 		case STOREI:
 			tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
 			break;
@@ -321,8 +298,46 @@ public class TinyNode {
 		case WRITES:
 			tinyOps.add(new TinyNode(TinyOp.sys_writes, processArg(irNode.op1, f), ""));
 			break;
+		case ADDI:
+			op = TinyOp.addi;
+			break;
+		case ADDF:
+			op = TinyOp.addr;
+			break;
+		case SUBI:
+			op = TinyOp.subi;
+			break;
+		case SUBF:
+			op = TinyOp.subr;
+			break;
+		case MULTI:
+			op = TinyOp.muli;
+			break;
+		case MULTF:
+			op = TinyOp.mulr;
+			break;
+		case DIVI:
+			op = TinyOp.divi;
+			break;
+		case DIVF:
+			op = TinyOp.divr;
+			break;
 		default:
 			break;
+		}
+		if (op != null){
+			if (opIsResult == 1){
+				tinyOps.add(new TinyNode(op, processArg(irNode.op2, f), processArg(irNode.result, f)));
+			}
+			else if (opIsResult == 2){
+				//cannot convert to tiny in this case
+				System.err.println(String.format("Cannot convert %s to tiny",irNode));
+				System.exit(1);
+			}
+			else {
+				tinyOps.add(new TinyNode(TinyOp.move, processArg(irNode.op1, f), processArg(irNode.result, f)));
+				tinyOps.add(new TinyNode(op, processArg(irNode.op2, f), processArg(irNode.result, f)));
+			}
 		}
 		return tinyOps;
 	}
