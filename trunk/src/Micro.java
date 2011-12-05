@@ -218,7 +218,7 @@ public class Micro {
 								newIRNode.opCode = IRNode.IROp.STOREF;
 							else
 								newIRNode.opCode = IRNode.IROp.STOREI;
-							newIRNode.op1 = String.format("$%-d", spillStackLoc);
+							newIRNode.op1 = String.format("$-%d", spillStackLoc);
 							newIRNode.op2 = "";
 							newIRNode.result = f.genTempReg();
 							if (ir.op1.equals(gn.Name()))
@@ -243,7 +243,7 @@ public class Micro {
 								newIRNode.opCode = IRNode.IROp.STOREI;
 							newIRNode.op1 = gn.Name();
 							newIRNode.op2 = "";
-							newIRNode.result = String.format("$%-d", spillStackLoc);
+							newIRNode.result = String.format("$-%d", spillStackLoc);
 							newIR.add(newIRNode);
 							for (IRNode irp : ir.children){
 								newIRNode.children.add(irp);
