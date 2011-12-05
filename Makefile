@@ -15,6 +15,7 @@ CLASSES = \
 		$(SOURCEPATH)/IRNode.java \
 		$(SOURCEPATH)/TinyNode.java \
 		$(SOURCEPATH)/FunctionClass.java \
+		$(SOURCEPATH)/GraphNode.java \
 		$(SOURCEPATH)/Micro.java
 
 
