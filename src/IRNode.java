@@ -59,7 +59,7 @@ public class IRNode {
 		parents = new ArrayList<IRNode>();
 		children = new ArrayList<IRNode>();
 		inSet = new TreeSet<String>();
-        outSet = new TreeSet<String>();	
+		outSet = new TreeSet<String>();	
 	}
 	
 	public String toString()

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeSet;
 
 import java.util.LinkedList;
@@ -24,12 +25,17 @@ public class Micro {
 	
 	
 	public static void main(String[] args) {
-					
-		//lets do some file io
 		
+		//check to see if register allocation desired
+		boolean regAllocation = false;
+		int currArgument = 0;
+		if (args.length > 0 && args[currArgument++].trim().equals("-live"))
+			regAllocation = true;
+		
+		//lets do some file io
 		try
 		{
-			CharStream inputstream = new ANTLRFileStream(args[0].trim());
+			CharStream inputstream = new ANTLRFileStream(args[currArgument].trim());
 			MicroParserLexer lexer = new MicroParserLexer(inputstream);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             MicroParserParser parser = new MicroParserParser(tokens);
@@ -50,60 +56,33 @@ public class Micro {
             	
             	for(int j=0; j<FunctionClass.fList.size(); j++)
             	{
-            		LinkedList<IRNode> IR = FunctionClass.fList.get(j).IR;
-            		
-            		genControlFlow(IR);
-            		genLiveness(IR.get(IR.size() - 1));
-            		
-            		//print cfg for now
-            		System.out.println("");
-            		System.out.println("");
-            		System.out.println("--------------------------");
-            		for(int i=0; i< IR.size(); i++)
+            		FunctionClass currentF = FunctionClass.fList.get(j);
+            		if (regAllocation)
             		{
-            			IRNode c = IR.get(i);
-            			System.out.print("PARENTS: ");
-            			for(int k =0; k< c.parents.size(); k++)
-            			{
-            				System.out.print(c.parents.get(k) + " ");
-            			
-            			}
-            			System.out.println("");
-            			System.out.println("NODE: " + c.toString());
-            			System.out.print("CHILDREN: ");
-            			for(int k =0; k< c.children.size(); k++)
-            			{
-            				System.out.print(c.children.get(k) + " ");
-            			
-            			}
-            			System.out.println("");
-            			System.out.print("LIVE: ");
-            			
-            			for(int k =0; k< c.outSet.size(); k++)
-            			{
-            				System.out.print(c.outSet.toArray()[k] + " ");
-            			
-            			}
-            			System.out.print("\n\n\n");
+	            		boolean registerAllocationDone = false;
+	            		while (!registerAllocationDone)
+	            		{
+	            			LinkedList<IRNode> IR = currentF.IR;
+	            			for (IRNode irn : IR){
+	            				irn.children.clear();
+	            				irn.parents.clear();
+	            				irn.inSet.clear();
+	            				irn.outSet.clear();
+	            			}
+	            			genControlFlow(IR);
+	            			genLiveness(IR.get(IR.size() - 1));
+	            			currentF.GetFunctionInterferenceGraph();
+	            			registerAllocationDone = RegisterAllocation(currentF);
+	            		}
+	            		
+	            		//PrintLivenessCFG(currentF);
+	            		//PrintInterferenceGraph(currentF);
+	            		//System.out.print("\n\n\n");
             		}
             		
-            		System.out.println("--------------------------");
-            		System.out.println("Interference Graph");
-            		
-        			HashMap<String, ArrayList<String>> interGraph = GetFunctionInterferenceGraph(FunctionClass.fList.get(j));
-            		for (Entry<String,ArrayList<String>> entry : interGraph.entrySet())
+            		for(IRNode irn : currentF.IR)
             		{
-            			System.out.print(entry.getKey() + ":");
-            			for (String s : entry.getValue())
-            				System.out.print(" " + s);
-            			System.out.println("");
-            		}
-            		
-            		System.out.print("\n\n\n");
-            		
-            		for(int i=0; i< IR.size(); i++)
-            		{
-            			System.out.println("; " + IR.get(i)); 
+            			System.out.println("; " + irn); 
             		}
             	}
             	
@@ -123,32 +102,229 @@ public class Micro {
 		
 	}
 	
-	private static HashMap<String, ArrayList<String>> GetFunctionInterferenceGraph(FunctionClass f)
+	private static void PrintInterferenceGraph(FunctionClass f)
 	{
-		HashMap<String, ArrayList<String>> interferenceGraph = new HashMap<String, ArrayList<String>>();
-		
-		Iterator<IRNode> irIterator = f.IR.iterator();
-		IRNode currentNode;
-		while (irIterator.hasNext())
+		System.out.println("; --------------------------");
+		System.out.println("; Interference Graph");
+		if (f.interferenceGraph == null)
+			f.GetFunctionInterferenceGraph();
+		for (Entry<String,ArrayList<String>> entry : f.interferenceGraph.entrySet())
 		{
-			currentNode = irIterator.next();
-			for (String first : currentNode.outSet)
+			System.out.print("; " + entry.getKey() + ":");
+			for (String s : entry.getValue())
+				System.out.print(" " + s);
+			System.out.println("");
+		}
+		System.out.println("; --------------------------");
+	}
+	
+	private static void PrintLivenessCFG(FunctionClass f)
+	{
+		LinkedList<IRNode> IR = f.IR;
+		//print cfg for now
+		System.out.println("");
+		System.out.println("");
+		System.out.println("; --------------------------");
+		for(int i=0; i< IR.size(); i++)
+		{
+			IRNode c = IR.get(i);
+			System.out.print("; PARENTS: ");
+			for(int k =0; k< c.parents.size(); k++)
 			{
-				if (!first.startsWith("$T"))
-					continue;
-				if (!interferenceGraph.containsKey(first))
-					interferenceGraph.put(first, new ArrayList<String>());
-				ArrayList<String> curInterference = interferenceGraph.get(first);
-				for (String s : currentNode.outSet)
-				{
-					if (!first.equals(s) && !curInterference.contains(s) && s.startsWith("$T"))
-					{
-						curInterference.add(s);
-					}
-				}
+				System.out.print(c.parents.get(k) + " ");
+			
+			}
+			System.out.println("");
+			System.out.println("; NODE: " + c.toString());
+			System.out.print("; CHILDREN: ");
+			for(int k =0; k< c.children.size(); k++)
+			{
+				System.out.print(c.children.get(k) + " ");
+			
+			}
+			System.out.println("");
+			System.out.print("; LIVE: ");
+			
+			for(int k =0; k< c.outSet.size(); k++)
+			{
+				System.out.print(c.outSet.toArray()[k] + " ");
+			
+			}
+			System.out.print("\n\n\n");
+		}
+	}
+	
+	private static boolean RegisterAllocation(FunctionClass f)
+	{
+		int k = SYSTEM_REGISTER_COUNT - 1;
+		//temporary variables are mapped to integers 0 through SYSTEM_REGISTER_COUNT - 1 
+		ArrayList<GraphNode> nodes = new ArrayList<GraphNode>();
+		HashMap<String,GraphNode> hashNodes = new HashMap<String,GraphNode>();
+		for (Entry<String,ArrayList<String>> entry : f.interferenceGraph.entrySet()) {
+			GraphNode tempGN = new GraphNode(entry.getKey());
+			nodes.add(tempGN);
+			hashNodes.put(entry.getKey(), tempGN);
+		}
+		for (Entry<String,ArrayList<String>> entry : f.interferenceGraph.entrySet()) {
+			GraphNode tempGN = hashNodes.get(entry.getKey());
+			for (String s : entry.getValue()) {
+				tempGN.addNegihbor(hashNodes.get(s));
 			}
 		}
-		return interferenceGraph;
+		Stack<GraphNode> toColorStack = new Stack<GraphNode>();
+		while (!nodes.isEmpty()) {
+			GraphNode selectedNode = null;
+			// select a node that has k-1 non-colored edges
+			for(GraphNode gn : nodes) {
+				if (gn.NumNonColoredNeighbors() < k) {
+					selectedNode = gn;
+					break;
+				}
+			}
+			if (selectedNode == null) {
+				// Possible spill
+				// just select a node that will remove the most edges
+				selectedNode = GetLargestKGraphNode(nodes);
+			}
+			// mark node as colored and put it into the toColorStack
+			selectedNode.colored = true;
+			toColorStack.push(selectedNode);
+			nodes.remove(selectedNode);
+		}
+		//At this point, have stack of nodes to color
+		//Need to color nodes and if cannot color need to write spill logic and return false
+		while (!toColorStack.isEmpty()){
+			GraphNode gn = toColorStack.pop();
+			if (!gn.FindColor()){
+				//failed to color spill this variable
+				int spillStackLoc = 0;
+				LinkedList<IRNode> newIR = new LinkedList<IRNode>();
+				for (IRNode ir : f.IR){
+					if (ir.opCode.equals(IRNode.IROp.LINK)){
+						spillStackLoc = Integer.parseInt(ir.op1);
+						spillStackLoc++;
+						ir.op1 = String.format("%d", spillStackLoc);
+						newIR.add(ir);
+					}
+					else if(spillStackLoc != 0){
+						IRNode newIRNode;
+						if (gn.Name().equals(ir.op1) || gn.Name().equals(ir.op2)){
+							//load from spill register and replace with new temporary
+							newIRNode = new IRNode();
+							if (GetIfIRNnodeIsFloat(ir))
+								newIRNode.opCode = IRNode.IROp.STOREF;
+							else
+								newIRNode.opCode = IRNode.IROp.STOREI;
+							newIRNode.op1 = String.format("$%d", spillStackLoc);
+							newIRNode.op2 = "";
+							newIRNode.result = f.genTempReg();
+							if (ir.op1.equals(gn.Name()))
+								ir.op1 = newIRNode.result;
+							if (ir.op2.equals(gn.Name()))
+								ir.op2 = newIRNode.result;
+							newIR.add(newIRNode);
+							for (IRNode irp : ir.parents){
+								newIRNode.parents.add(irp);
+							}
+							newIRNode.children.add(ir);
+							ir.parents.clear();
+							ir.parents.add(newIRNode);
+						}
+						newIR.add(ir);
+						if (gn.Name().equals(ir.result)){
+							//save spill register to stack
+							newIRNode = new IRNode();
+							if (GetIfIRNnodeIsFloat(ir))
+								newIRNode.opCode = IRNode.IROp.STOREF;
+							else
+								newIRNode.opCode = IRNode.IROp.STOREI;
+							newIRNode.op1 = gn.Name();
+							newIRNode.op2 = "";
+							newIRNode.result = String.format("$%d", spillStackLoc);
+							newIR.add(newIRNode);
+							for (IRNode irp : ir.children){
+								newIRNode.children.add(irp);
+							}
+							newIRNode.parents.add(ir);
+							ir.children.clear();
+							ir.children.add(newIRNode);
+						}
+					}
+					else
+						newIR.add(ir);
+				}
+				f.IR = newIR;
+				return false;
+			}
+		}
+		//If coloring successful need to re-write function ops with registers
+		for (IRNode ir : f.IR){
+			GraphNode gn;
+			if(ir.op1.startsWith("$T")){
+				gn = hashNodes.get(ir.op1.trim());
+				ir.op1 = String.format("r%d", gn.Color());
+			}
+			if(ir.op2.startsWith("$T")){
+				gn = hashNodes.get(ir.op2.trim());
+				ir.op2 = String.format("r%d", gn.Color());
+			}
+			if(ir.result.startsWith("$T")){
+				gn = hashNodes.get(ir.result.trim());
+				ir.result = String.format("r%d", gn.Color());
+			}
+		}
+		//DONE!!!!
+		return true;
+	}
+	
+	private static boolean GetIfIRNnodeIsFloat(IRNode ir)
+	{
+		switch (ir.opCode)
+		{
+			default:
+				System.err.println("Unexpected OpCode during graph coloring spill.");
+				System.exit(1);
+				break;
+			case ADDI:
+			case SUBI:
+			case MULTI:
+			case DIVI:
+			case STOREI:
+			case BEQI:
+			case BGEI:
+			case BGTI:
+			case BLEI:
+			case BLTI:
+			case BNEI:
+				return false;
+			case ADDF:
+			case SUBF:
+			case MULTF:
+			case DIVF:
+			case STOREF:
+			case BEQF:
+			case BGEF:
+			case BGTF:
+			case BLEF:
+			case BLTF:
+			case BNEF:
+				break;
+		}
+		return true;
+	}
+	
+	private static GraphNode GetLargestKGraphNode(ArrayList<GraphNode> nodes)
+	{
+		int size = 0;
+		GraphNode largestKNode = null;
+		for(GraphNode gn : nodes) {
+			int newk = gn.NumNonColoredNeighbors();
+			if (newk > size) {
+				size = newk;
+				largestKNode = gn;
+			}
+		}
+		return largestKNode;
 	}
 	
 	private static boolean genLiveness(IRNode n)
