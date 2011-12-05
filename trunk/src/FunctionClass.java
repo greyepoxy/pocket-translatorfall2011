@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -54,6 +55,7 @@ public class FunctionClass {
 	public HashMap<Integer, ArrayList<MicroParserParser.TableEntry>> symbolTable;
 	public ArrayList<MicroParserParser.TableEntry> paramTable;
 	public LinkedList<IRNode> IR;
+	public HashMap<String, ArrayList<String>> interferenceGraph;
 	
 	public FunctionClass(MicroParserParser parser, Tree AST, HashMap<Integer, ArrayList<MicroParserParser.TableEntry>> st)
 	{
@@ -97,6 +99,7 @@ public class FunctionClass {
 			
 			labelStack.pop();
 			fList.add(this);
+			interferenceGraph = null;
 	}
 	
 	
@@ -758,5 +761,37 @@ public class FunctionClass {
 		}
 		System.out.println("Can't find your symbol.");
 		return false;
-	}	
+	}
+	
+	public void GetFunctionInterferenceGraph()
+	{
+		HashMap<String, ArrayList<String>> interferenceGraph = new HashMap<String, ArrayList<String>>();
+		
+		for (IRNode currentNode : this.IR)
+		{
+			if (currentNode.op1.startsWith("$T"))
+				if (!interferenceGraph.containsKey(currentNode.op1))
+					interferenceGraph.put(currentNode.op1, new ArrayList<String>());
+			if (currentNode.op2.startsWith("$T"))
+				if (!interferenceGraph.containsKey(currentNode.op2))
+					interferenceGraph.put(currentNode.op2, new ArrayList<String>());
+			if (currentNode.result.startsWith("$T"))
+				if (!interferenceGraph.containsKey(currentNode.result))
+					interferenceGraph.put(currentNode.result, new ArrayList<String>());
+			for (String first : currentNode.outSet)
+			{
+				if (!first.startsWith("$T"))
+					continue;
+				if (!interferenceGraph.containsKey(first))
+					interferenceGraph.put(first, new ArrayList<String>());
+				ArrayList<String> curInterference = interferenceGraph.get(first);
+				for (String s : currentNode.outSet){
+					if (!first.equals(s) && s.startsWith("$T") && !curInterference.contains(s))
+						curInterference.add(s);
+				}
+			}
+		}
+		
+		this.interferenceGraph = interferenceGraph;
+	}
 }

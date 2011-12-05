@@ -150,6 +150,9 @@ public class TinyNode {
 			int returnValueOnStack = 2 + Micro.SYSTEM_REGISTER_COUNT + f.paramTable.size();
 			newArg = String.format("$%s", returnValueOnStack);
 		}
+		// could be a stack location if its a spilled variable
+		else if (arg.startsWith("$"))
+			newArg = arg;
 		// Possible local variable or parameter
 		else
 		{
